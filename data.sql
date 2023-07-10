@@ -87,3 +87,7 @@ INSERT INTO INSCRIPTION_REGIME (date_regime, id_regime, id_utilisateur, duree, m
 
 -- Insertion de données dans la table ADMINISTRATEUR
 INSERT INTO ADMINISTRATEUR (email, mot_de_passe) VALUES ('admin@example.com', 'admin123');
+
+INSERT INTO CODE(code, montant) VALUES ('CODE1', 100);
+INSERT INTO CODE(code, montant) VALUES ('CODE2', 200);
+INSERT INTO CODE(code, montant) VALUES ('CODE3', 300);
