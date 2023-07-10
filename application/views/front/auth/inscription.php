@@ -25,6 +25,11 @@
                             <span class="text-danger"><?= get_error($errors, 'email') ?></span>
                         </div>
                         <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Date de naissance" required
+                                   name="date_de_naissance" value="<?php echo set_value('date_de_naissance') ?>">
+                            <span class="text-danger"><?= get_error($errors, 'date_de_naissance') ?></span>
+                        </div>
+                        <div class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Mot de passe" required minlength="4"
                                    name="motDePasse" value="<?php echo set_value('motDePasse') ?>">
                             <span class="text-danger"><?= get_error($errors, 'motDePasse') ?></span>

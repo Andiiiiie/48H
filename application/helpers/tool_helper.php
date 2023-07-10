@@ -5,3 +5,8 @@ function get_error($error, $name) {
         return $error[$name];
     return '';
 }
+
+function to_timestamp($string) {
+    $timestamp = strtotime($string);
+    return date('Y-m-d H:i:s', $timestamp);
+}
