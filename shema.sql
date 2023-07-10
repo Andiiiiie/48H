@@ -179,7 +179,7 @@ DROP TABLE IF EXISTS CODE;
 
 CREATE TABLE CODE(
     id_code INT PRIMARY KEY AUTO_INCREMENT,
-    code VARCHAR(10) NOT NULL,
+    code VARCHAR(10) NOT NULL UNIQUE,
     montant FLOAT
 );
 
@@ -189,4 +189,16 @@ CREATE TABLE ADMINISTRATEUR (
     id_administrateur INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) UNIQUE,
     mot_de_passe VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS INSERTION_CODE;
+
+CREATE TABLE INSERTION_CODE(
+    id_insertion_code INT PRIMARY KEY AUTO_INCREMENT,
+    id_code INT NOT NULL,
+    id_utilisateur INT NOT NULL,
+    etat INT NOT NULL DEFAULT 0,
+    date_implementation TIMESTAMP default CURRENT_TIMESTAMP,
+    FOREIGN KEY(id_code) REFERENCES CODE(id_code),
+    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
 );

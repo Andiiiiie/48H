@@ -4,10 +4,10 @@
 <script src="<?=base_url('assets/vendors/js/vendor.bundle.base.js')?>"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
-<script src="<?=base_url('assets/vendors/chart.js/Chart.min.js')?>"></script>
-<script src="<?=base_url('assets/vendors/datatables.net/jquery.dataTables.js')?>"></script>
-<script src="<?=base_url('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')?>"></script>
-<script src="<?=base_url('assets/js/dataTables.select.min.js')?>"></script>
+<script src="<?= base_url('assets/vendors/chart.js/Chart.min.js') ?>"></script>
+<script src="<?= base_url('assets/vendors/datatables.net/jquery.dataTables.js') ?>"></script>
+<script src="<?= base_url('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') ?>"></script>
+<script src="<?= base_url('assets/js/dataTables.select.min.js') ?>"></script>
 
 <!-- End plugin js for this page -->
 <!-- inject:js -->
@@ -51,6 +51,26 @@
         <?php endforeach;
     endif;
     endforeach; ?>
+
+<script>
+    function copyText() {
+        var textToCopy = document.getElementById("text").innerText;
+
+        var tempTextarea = document.createElement("textarea");
+
+        tempTextarea.value = textToCopy;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+
+        document.body.removeChild(tempTextarea);
+    }
+
+    function copy(id) {
+        let textToCopy = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(textToCopy);
+    }
+</script>
 </body>
 
 </html>
