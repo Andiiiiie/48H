@@ -17,12 +17,20 @@ class Auth extends CI_Controller {
 
         if($this->form_validation->run() === FALSE) {
             $data['errors'] = $this->form_validation->error_array();
-            $this->load->view('templates/front_header');
+            $this->load->view('front/templates/header');
             $this->load->view('front/auth/inscription', $data);
-            $this->load->view('templates/front_footer');
+            $this->load->view('front/templates/footer');
         } else {
             $data['test'] = $this->utilisateur_model->inscription();
-            $this->load->view('welcome_message');
+            $this->session->set_flashdata('success', array('Votre compte a été créé avec succès', '2eme'));
+            redirect('front/dashboard');
         }
+    }
+
+    public function connexion()
+    {
+        $this->load->view('front/templates/header');
+        $this->load->view('front/auth/connexion');
+        $this->load->view('front/templates/footer');
     }
 }
