@@ -41,16 +41,16 @@
 
 <!-- toastr -->
 <script src="<?= base_url('assets/vendors/toastr/toastr.min.js') ?>"></script>
-<script>
-    // boucle sur les messages flashdata
-    <?php foreach (['success', 'info', 'warning', 'error'] as $type) : ?>
-        <?php if ($this->session->flashdata($type)) : ?>
-            <?php foreach ($this->session->flashdata($type) as $message) : ?>
+<?php foreach (['success', 'info', 'warning', 'error'] as $type) :
+    $information = $this->session->flashdata($type);
+    if (is_array($information)) :
+        foreach ($information as $message) : ?>
+            <script>
                 toastr.<?= $type ?>("<?= $message ?>");
-            <?php endforeach ?>
-        <?php endif ?>
-    <?php endforeach ?>
-</script>
+            </script>
+        <?php endforeach;
+    endif;
+    endforeach; ?>
 </body>
 
 </html>

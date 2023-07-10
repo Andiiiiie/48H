@@ -77,7 +77,7 @@
                         <i class="ti-settings text-primary"></i>
                         Paramètres
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" href="<?= site_url('front/auth/deconnexion') ?>">
                         <i class="ti-power-off text-primary"></i>
                         Déconnexion
                     </a>

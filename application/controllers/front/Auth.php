@@ -29,8 +29,27 @@ class Auth extends CI_Controller {
 
     public function connexion()
     {
-        $this->load->view('front/templates/header');
-        $this->load->view('front/auth/connexion');
-        $this->load->view('front/templates/footer');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
+        $this->form_validation->set_rules('motDePasse', 'Mot de passe', 'trim|required');
+
+        if($this->form_validation->run() === FALSE) {
+            $data['errors'] = $this->form_validation->error_array();
+            $this->load->view('front/templates/header');
+            $this->load->view('front/auth/connexion', $data);
+            $this->load->view('front/templates/footer');
+        } else {
+            if($this->utilisateur_model->connexion() === FALSE) {
+                $this->session->set_flashdata('error', array('Email ou mot de passe incorrect'));
+                redirect('front/auth/connexion');
+            } else {
+                redirect('front/dashboard');
+            }
+        }
+    }
+
+    public function deconnexion()
+    {
+        $this->session->sess_destroy();
+        redirect('front/auth/connexion');
     }
 }

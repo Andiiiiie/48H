@@ -8,24 +8,20 @@
                         <img src="<?=base_url('assets/images/logo.svg')?>" alt="logo">
                     </div>
                     <h6 class="font-weight-light">Connecter votre compte, pour continuer.</h6>
-                    <form class="pt-3">
+                    <?php echo form_open('front/auth/connexion', array('class'=>'pt-3')); ?>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                            <input type="email" class="form-control form-control-lg" placeholder="Email" value="<?= set_value('email') ?>"
+                                name="email" required>
+                            <span class="text-danger"><?= get_error($errors, 'email') ?></span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                            <input type="text" class="form-control form-control-lg" placeholder="Mot de passe" value="<?= set_value('motDePasse') ?>"
+                                name="motDePasse" required>
+                            <span class="text-danger"><?= get_error($errors, 'motDePasse') ?></span>
                         </div>
                         <div class="mt-3">
-                            <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="">Connexion</a>
+                            <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">Connexion</button>
                         </div>
-                        <!--<div class="my-2 d-flex justify-content-between align-items-center">
-                            <div class="form-check">
-                                <label class="form-check-label text-muted">
-                                    <input type="checkbox" class="form-check-input">
-                                </label>
-                            </div>
-                            <a href="#" class="auth-link text-black">Forgot password?</a>
-                        </div>-->
                         <div class="text-center mt-4 font-weight-light">
                             Vous n'avez pas de compte? <a href="<?= site_url('front/auth/inscription') ?>" class="text-primary">Créer</a>
                         </div>
