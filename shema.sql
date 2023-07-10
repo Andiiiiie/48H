@@ -64,7 +64,9 @@ DROP TABLE IF EXISTS PLAT_DETAIL;
 CREATE TABLE PLAT_DETAIL(
     id_plat_detail INT PRIMARY KEY AUTO_INCREMENT,
     composition VARCHAR(255),
-    image_path VARCHAR(500)
+    image_path VARCHAR(500),
+    id_plat INT,
+    FOREIGN KEY(id_plat) REFERENCES PLAT(id_plat)
 );
 
 DROP TABLE IF EXISTS ACTIVITE;
@@ -80,7 +82,9 @@ DROP TABLE IF EXISTS ACTIVITE_DETAIL;
 CREATE TABLE ACTIVITE_DETAIL(
     id_activite_detail INT PRIMARY KEY AUTO_INCREMENT,
     composition VARCHAR(255),
-    image_path VARCHAR(500)
+    image_path VARCHAR(500),
+    id_activite INT,
+    FOREIGN KEY(id_activite) REFERENCES ACTIVITE(id_activite)
 );
 
 -- tarif de chaque regime 

@@ -30,9 +30,9 @@ INSERT INTO PLAT (designation, image_path) VALUES ('Plat 2', '/chemin/vers/image
 INSERT INTO PLAT (designation, image_path) VALUES ('Plat 3', '/chemin/vers/image3.jpg');
 
 -- Insertion de données dans la table PLAT_DETAIL
-INSERT INTO PLAT_DETAIL (composition, image_path) VALUES ('Composition plat 1', '/chemin/vers/image1.jpg');
-INSERT INTO PLAT_DETAIL (composition, image_path) VALUES ('Composition plat 2', '/chemin/vers/image2.jpg');
-INSERT INTO PLAT_DETAIL (composition, image_path) VALUES ('Composition plat 3', '/chemin/vers/image3.jpg');
+INSERT INTO PLAT_DETAIL (composition, image_path, id_plat) VALUES ('Composition plat 1', '/chemin/vers/image1.jpg', 1);
+INSERT INTO PLAT_DETAIL (composition, image_path, id_plat) VALUES ('Composition plat 2', '/chemin/vers/image2.jpg', 2);
+INSERT INTO PLAT_DETAIL (composition, image_path, id_plat) VALUES ('Composition plat 3', '/chemin/vers/image3.jpg', 3);
 
 -- Insertion de données dans la table ACTIVITE
 INSERT INTO ACTIVITE (designation, image_path) VALUES ('Activité 1', '/chemin/vers/image1.jpg');
@@ -40,9 +40,9 @@ INSERT INTO ACTIVITE (designation, image_path) VALUES ('Activité 2', '/chemin/v
 INSERT INTO ACTIVITE (designation, image_path) VALUES ('Activité 3', '/chemin/vers/image3.jpg');
 
 -- Insertion de données dans la table ACTIVITE_DETAIL
-INSERT INTO ACTIVITE_DETAIL (composition, image_path) VALUES ('Composition activité 1', '/chemin/vers/image1.jpg');
-INSERT INTO ACTIVITE_DETAIL (composition, image_path) VALUES ('Composition activité 2', '/chemin/vers/image2.jpg');
-INSERT INTO ACTIVITE_DETAIL (composition, image_path) VALUES ('Composition activité 3', '/chemin/vers/image3.jpg');
+INSERT INTO ACTIVITE_DETAIL (composition, image_path, id_activite) VALUES ('Composition activité 1', '/chemin/vers/image1.jpg', 1);
+INSERT INTO ACTIVITE_DETAIL (composition, image_path, id_activite) VALUES ('Composition activité 2', '/chemin/vers/image2.jpg', 2);
+INSERT INTO ACTIVITE_DETAIL (composition, image_path, id_activite) VALUES ('Composition activité 3', '/chemin/vers/image3.jpg', 3);
 
 -- Insertion de données dans la table TARIF_REGIME
 INSERT INTO TARIF_REGIME (date_implementation, id_regime, duree, prix) VALUES (NOW(), 1, 30, 100);
