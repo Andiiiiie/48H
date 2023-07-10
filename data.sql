@@ -80,9 +80,10 @@ INSERT INTO DETAILS_PATIENT (id_utilisateur, date_implementation, id_parametre, 
 INSERT INTO DETAILS_PATIENT (id_utilisateur, date_implementation, id_parametre, valeur) VALUES (3, NOW(), 3, 0.9);
 
 -- Insertion de données dans la table INSCRIPTION_REGIME
-INSERT INTO INSCRIPTION_REGIME (date_regime, id_utilisateur, duree, montant) VALUES (NOW(), 1, 30, 100);
-INSERT INTO INSCRIPTION_REGIME (date_regime, id_utilisateur, duree, montant) VALUES (NOW(), 2, 60, 200);
-INSERT INTO INSCRIPTION_REGIME (date_regime, id_utilisateur, duree, montant) VALUES (NOW(), 3, 90, 300);
+INSERT INTO INSCRIPTION_REGIME (date_regime, id_regime, id_utilisateur, duree, montant) VALUES (NOW(), 1, 1, 30, 100);
+INSERT INTO INSCRIPTION_REGIME (date_regime, id_regime, id_utilisateur, duree, montant) VALUES (NOW(), 2, 2, 60, 200);
+INSERT INTO INSCRIPTION_REGIME (date_regime, id_regime, id_utilisateur, duree, montant) VALUES (NOW(), 3, 3, 90, 300);
+
 
 -- Insertion de données dans la table ADMINISTRATEUR
 INSERT INTO ADMINISTRATEUR (email, mot_de_passe) VALUES ('admin@example.com', 'admin123');

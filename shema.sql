@@ -162,10 +162,12 @@ DROP TABLE IF EXISTS INSCRIPTION_REGIME;
 
 CREATE TABLE INSCRIPTION_REGIME(
     id_inscription_regime INT PRIMARY KEY AUTO_INCREMENT,
+    id_regime INT,
     date_regime TIMESTAMP,
     id_utilisateur INT,
     duree INT,
     montant FLOAT,
+    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
     FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
 );
 
