@@ -1,0 +1,16 @@
+@font-face {
+    font-family: BestRegards;
+    src: url('../../fonts/Best Regards.ttf');
+}
+
+#feelGood
+{
+    color: #8d65eb;
+    font-family: BestRegards;
+    font-size: 160%;
+}
+
+#surligner
+{
+    color: #ff589e;
+}
