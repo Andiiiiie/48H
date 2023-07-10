@@ -40,7 +40,7 @@ class Utilisateur_model extends CI_Model
         if($query->num_rows() === 1) {
             $row = $query->row();
             $data = array(
-                'user_id' => $row->id,
+                'user_id' => $row->id_utilisateur,
                 'user_nom' => $row->nom,
                 'user_prenom' => $row->prenom,
                 'user_email' => $row->email,
@@ -53,5 +53,35 @@ class Utilisateur_model extends CI_Model
         } else {
             return FALSE;
         }
+    }
+
+    public function ajouter_credit($code)
+    {
+        // Vérification du code
+        $code_id = $this->porte_monnaie_model->code_existe($code);
+        if ($code_id === -1) {
+            $this->session->set_flashdata('error', array('Le code que vous avez entré n\'existe pas'));
+            return FALSE;
+        }
+
+        if ($this->porte_monnaie_model->code_deja_utilise($code, $this->session->userdata('user_id'))) {
+            $this->session->set_flashdata('error', array('Vous avez déjà utilisé ce code'));
+            return FALSE;
+        }
+
+
+        if (!$this->porte_monnaie_model->est_utilisable_code($code)) {
+            $this->session->set_flashdata('error', array('Le code que vous avez entré n\'est pas utilisable'));
+            return FALSE;
+        }
+
+        // Insertion du code
+        $data = array(
+            'id_utilisateur' => $this->session->userdata('user_id'),
+            'id_code' => $code_id,
+            'etat' => 0
+        );
+        $this->db->insert('insertion_code', $data);
+        return TRUE;
     }
 }

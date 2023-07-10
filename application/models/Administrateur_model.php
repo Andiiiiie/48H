@@ -17,7 +17,7 @@ class Administrateur_model extends CI_Model
         if($query->num_rows() === 1) {
             $row = $query->row();
             $data = array(
-                'user_id' => $row->id,
+                'user_id' => $row->id_administrateur,
                 'user_email' => $row->email,
                 'is_admin' => true
             );
