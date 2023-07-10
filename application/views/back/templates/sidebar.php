@@ -24,13 +24,48 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>General</h3>
+                        <h3>Adminitration</h3>
                         <ul class="nav side-menu">
                             <li>
-                                <a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fas fa-chart-bar"></i> Statistiques <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="">Dashboard</a></li>
-                                    <li><a href="">Dashboard2</a></li>
+                                    <li><a href="">Statistique utilisateurs</a></li>
+                                    <li><a href="">Statistique inscription regime</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-money-bill-wave"></i> Code <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?= site_url('back/code/insertion')?>">Insertion</a></li>
+                                    <li><a href="<?= site_url('back/code/liste')?>">Liste</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-futbol"></i> Sport <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="">Liste</a></li>
+                                    <li><a href="">Insertion</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-utensils"></i> Plat <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="">Liste</a></li>
+                                    <li><a href="">Insertion</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-map"></i></i> Regime <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="">Liste</a></li>
+                                    <li><a href="">Insertion</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fas fa-cogs"></i></i> Parametres regime <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="">Insertion</a></li>
+                                    <li><a href="">Recherche</a></li>
                                 </ul>
                             </li>
                         </ul>
