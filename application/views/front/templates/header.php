@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login_front</title>
+    <title>Titre du page</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?=base_url('assets/vendors/feather/feather.css')?>">
     <link rel="stylesheet" href="<?=base_url('assets/vendors/ti-icons/css/themify-icons.css')?>">

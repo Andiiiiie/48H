@@ -38,7 +38,7 @@ class Auth extends CI_Controller {
             $this->load->view('front/auth/connexion', $data);
             $this->load->view('front/templates/footer');
         } else {
-            if($this->utilisateur_model->connexion() === FALSE) {
+            if($this->utilisateur_model->connexion('front') === FALSE) {
                 $this->session->set_flashdata('error', array('Email ou mot de passe incorrect'));
                 redirect('front/auth/connexion');
             } else {

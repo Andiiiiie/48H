@@ -20,7 +20,24 @@ class Utilisateur_model extends CI_Model
         $this->db->insert('utilisateur', $data);
     }
 
-    public function connexion()
+    private function _est_autorise($office, $niveau)
+    {
+        if($office === 'back') {
+            if($niveau >= 10) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } else {
+            if($niveau < 10) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
+    }
+
+    public function connexion($office)
     {
         $this->db->where('email', $this->input->post('email'));
         $this->db->where('motDePasse', $this->input->post('motDePasse'));
@@ -36,7 +53,7 @@ class Utilisateur_model extends CI_Model
                 'user_logged_in' => TRUE
             );
             $this->session->set_userdata($data);
-            return TRUE;
+            return $this->_est_autorise($office, $row->niveau);
         } else {
             return FALSE;
         }
