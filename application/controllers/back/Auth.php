@@ -5,7 +5,7 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('utilisateur_model');
+        $this->load->model('administrateur_model');
     }
 
     public function connexion()
@@ -17,7 +17,7 @@ class Auth extends CI_Controller
             $data['errors'] = $this->form_validation->error_array();
             $this->load->view('back/auth/connexion', $data);
         } else {
-            if($this->utilisateur_model->connexion('back') === FALSE) {
+            if($this->administrateur_model->connexion() === FALSE) {
                 $this->session->set_flashdata('error', array('Email ou mot de passe incorrect'));
                 redirect('back/auth/connexion');
             } else {

@@ -8,39 +8,34 @@ class Utilisateur_model extends CI_Model
         $this->load->database();
     }
 
-    public function inscription($niveau=1)
+    public function inscription()
     {
+        $this->db->trans_start();
+        // Création nouveau porte feuille
+        $porte_feuille = array(
+            'montant'=> 0
+        );
+        $this->db->insert('porte_feuille', $porte_feuille);
+        $id_porte_feuille = $this->db->insert_id();
+
+        // Création utilisateur
         $data = array(
             'nom' => $this->input->post('nom'),
             'prenom' => $this->input->post('prenom'),
             'email' => $this->input->post('email'),
-            'motDePasse' => $this->input->post('motDePasse'),
-            'niveau' => $niveau
+            'mot_de_passe' => $this->input->post('motDePasse'),
+            'date_de_naissance' => to_timestamp($this->input->post('date_de_naissance')),
+            'id_porte_feuille' => $id_porte_feuille
         );
         $this->db->insert('utilisateur', $data);
+
+        $this->db->trans_complete();
     }
 
-    private function _est_autorise($office, $niveau)
-    {
-        if($office === 'back') {
-            if($niveau >= 10) {
-                return TRUE;
-            } else {
-                return FALSE;
-            }
-        } else {
-            if($niveau < 10) {
-                return TRUE;
-            } else {
-                return FALSE;
-            }
-        }
-    }
-
-    public function connexion($office)
+    public function connexion()
     {
         $this->db->where('email', $this->input->post('email'));
-        $this->db->where('motDePasse', $this->input->post('motDePasse'));
+        $this->db->where('mot_de_passe', $this->input->post('motDePasse'));
         $query = $this->db->get('utilisateur');
         if($query->num_rows() === 1) {
             $row = $query->row();
@@ -49,11 +44,12 @@ class Utilisateur_model extends CI_Model
                 'user_nom' => $row->nom,
                 'user_prenom' => $row->prenom,
                 'user_email' => $row->email,
-                'user_niveau' => $row->niveau,
-                'user_logged_in' => TRUE
+                'user_date_de_naissance' => $row->date_de_naissance,
+                'user_id_porte_feuille' => $row->id_porte_feuille,
+                'is_admin' => false
             );
             $this->session->set_userdata($data);
-            return $this->_est_autorise($office, $row->niveau);
+            return TRUE;
         } else {
             return FALSE;
         }

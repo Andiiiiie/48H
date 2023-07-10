@@ -12,6 +12,7 @@ class Auth extends CI_Controller {
     {
         $this->form_validation->set_rules('nom', 'Nom', 'trim|required');
         $this->form_validation->set_rules('prenom', 'Prénom', 'trim|required');
+        $this->form_validation->set_rules('date_de_naissance', 'Date de naissance', 'trim|valid_date|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required|is_unique[utilisateur.email]');
         $this->form_validation->set_rules('motDePasse', 'Mot de passe', 'trim|required|min_length[4]');
 
@@ -22,7 +23,7 @@ class Auth extends CI_Controller {
             $this->load->view('front/templates/footer');
         } else {
             $data['test'] = $this->utilisateur_model->inscription();
-            $this->session->set_flashdata('success', array('Votre compte a été créé avec succès', '2eme'));
+            $this->session->set_flashdata('success', array('Votre compte a été créé avec succès'));
             redirect('front/dashboard');
         }
     }
