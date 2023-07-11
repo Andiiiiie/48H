@@ -53,11 +53,11 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="#welcome" class="active">Home</a></li>
-                        <li><a href="#features">About</a></li>
-                        <li><a href="#work-process">Work Process</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="<?= site_url('front/Auth/connexion') ?>">Join Us</a></li>
+                        <li><a href="#welcome" class="active">Acceuil</a></li>
+                        <li><a href="#features">A propos</a></li>
+                        <li><a href="#work-process">Nos methodes</a></li>
+                        <li><a href="#testimonials">Temoignages</a></li>
+                        <li><a href="<?= site_url('front/Auth/connexion') ?>">Rejoignez-Nous</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -78,9 +78,9 @@
         <div class="container">
             <div class="row">
                 <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12" >
-                    <h1 >We provide the best <strong>strategy</strong><br>to achieve your <strong>goal</strong></h1>
-                    <p>Our mission is to empower individuals in their journey towards a healthier and happier life.</p>
-                    <a href="<?= site_url('front/Auth/connexion') ?>" class="main-button-slider">JOIN US</a>
+                    <h1>Nous proposons la meilleure <strong>stratégie</strong><br>pour atteindre votre <strong>objectif</strong></h1>
+                    <p>Notre mission est d'autonomiser les individus dans leur parcours vers une vie plus saine et plus heureuse.</p>
+                    <a href="<?= site_url('front/Auth/connexion') ?>" class="main-button-slider">Rejoignez-Nous</a>
                 </div>
             </div>
         </div>
@@ -101,8 +101,8 @@
                             <div class="icon">
                                 <i class="fa fa-utensils"></i>
                             </div>
-                            <h5 class="features-title">Modern Strategy</h5>
-                            <p>Customize anything in this template to fit your website needs</p>
+                            <h5 class="features-title">Nourriture saine</h5>
+                            <p>Votre alimentation adaptee a vos objectifs.</p>
                         </div>
                     </div>
                     <!-- ***** Features Small Item End ***** -->
@@ -113,8 +113,8 @@
                             <div class="icon">
                                 <i class="fas fa-dumbbell"></i>
                             </div>
-                            <h5 class="features-title">Best Relationship</h5>
-                            <p>Contact us immediately if you have a question in mind</p>
+                            <h5 class="features-title">Sport adapte</h5>
+                            <p>Vos activites vous serons conseille pour correspondre a votre alimentation.</p>
                         </div>
                     </div>
                     <!-- ***** Features Small Item End ***** -->
@@ -125,8 +125,8 @@
                             <div class="icon">
                                 <i class="fas fa-truck"></i>
                             </div>
-                            <h5 class="features-title">Ultimate Marketing</h5>
-                            <p>You just need to tell your friends about our free templates</p>
+                            <h5 class="features-title">Plat livré</h5>
+                            <p>Nous livrons vos plats chez vous.</p>
                         </div>
                     </div>
                     <!-- ***** Features Small Item End ***** -->
@@ -147,10 +147,10 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
                 <div class="left-heading">
-                    <h2 class="section-title">Let’s discuss about you project</h2>
+                    <h2 class="section-title">Parlons de nos Plats</h2>
                 </div>
                 <div class="left-text">
-                    <p>Nullam sit amet purus libero. Etiam ullamcorper nisl ut augue blandit, at finibus leo efficitur. Nam gravida purus non sapien auctor, ut aliquam magna ullamcorper.</p>
+                    <p>Que vous souhaitiez perdre du poids, maintenir votre forme ou simplement adopter une alimentation plus saine, nos plats répondent à tous vos besoins. Vous trouverez une variété de menus conçus par nos experts en nutrition, garantissant un équilibre parfait entre goût et bien-être.</p>
                 </div>
             </div>
         </div>
@@ -169,10 +169,10 @@
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
                 <div class="left-heading">
-                    <h2 class="section-title">We can help you to grow your business</h2>
+                    <h2 class="section-title">Du sport pour vous</h2>
                 </div>
                 <div class="left-text">
-                    <p>Aenean pretium, ipsum et porttitor auctor, metus ipsum iaculis nisi, a bibendum lectus libero vitae urna. Sed id leo eu dolor luctus congue sed eget ipsum. Nunc nec luctus libero. Etiam quis dolor elit.</p>
+                    <p>Nous vous proposons bien plus qu'une simple livraison de plats sains chez vous. Nous vous offrons également des conseils sportifs en ligne, en parfaite harmonie avec notre alimentation équilibrée.</p>
                 </div>
             </div>
             <div class="col-lg-1"></div>
@@ -191,7 +191,7 @@
             <div class="row">
                 <div class="offset-lg-3 col-lg-6">
                     <div class="info">
-                        <h1>Work Process</h1>
+                        <h1>Notre processus</h1>
                         <p>Aenean nec tempor metus. Maecenas ligula dolor, commodo in imperdiet interdum, vehicula ut ex. Donec ante diam.</p>
                     </div>
                 </div>
@@ -202,43 +202,31 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Get Ideas</strong>
-                        <span>Godard pabst prism fam cliche.</span>
+                        <strong>Collecte des informations</strong>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Sketch Up</strong>
-                        <span>Godard pabst prism fam cliche.</span>
+                        <strong>Proposition regime</strong>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Discuss</strong>
-                        <span>Godard pabst prism fam cliche.</span>
+                        <strong>Confirmation et personnalisation</strong>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Revise</strong>
-                        <span>Godard pabst prism fam cliche.</span>
+                        <strong>Validation et paiement </strong>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                     <a href="#" class="mini-box">
                         <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Approve</strong>
-                        <span>Godard pabst prism fam cliche.</span>
-                    </a>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <a href="#" class="mini-box">
-                        <i><img src="<?= base_url('assets/images/work-process-item-01.png') ?>" alt=""></i>
-                        <strong>Launch</strong>
-                        <span>Godard pabst prism fam cliche.</span>
+                        <strong>Livraison des repas</strong>
                     </a>
                 </div>
             </div>
@@ -255,12 +243,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="center-heading">
-                    <h2 class="section-title">What do they say?</h2>
+                    <h2 class="section-title">Nos retours</h2>
                 </div>
             </div>
             <div class="offset-lg-3 col-lg-6">
                 <div class="center-text">
-                    <p>Donec tempus, sem non rutrum imperdiet, lectus orci fringilla nulla, at accumsan elit eros a turpis. Ut sagittis lectus libero.</p>
+                    <p>Beaucoup ont ete satisfaits de nos services</p>
                 </div>
             </div>
         </div>
@@ -278,7 +266,7 @@
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">Catherine Soft</h3>
-                            <span>Managing Director</span>
+                            <span>Cliente qui a reussit perdre du poids</span>
                         </div>
                     </div>
                 </div>
@@ -296,7 +284,7 @@
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">Kelvin Wood</h3>
-                            <span>Digital Marketer</span>
+                            <span>Cliente qui a reussit prendre du poids</span>
                         </div>
                     </div>
                 </div>
@@ -314,7 +302,7 @@
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">David Martin</h3>
-                            <span>Website Manager</span>
+                            <span>Cliente qui a reussit perdre du poids</span>
                         </div>
                     </div>
                 </div>
