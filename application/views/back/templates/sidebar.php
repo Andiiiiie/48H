@@ -24,14 +24,10 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>Adminitration</h3>
+                        <h3>Administration</h3>
                         <ul class="nav side-menu">
                             <li>
-                                <a><i class="fas fa-chart-bar"></i> Statistiques <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="">Statistique utilisateurs</a></li>
-                                    <li><a href="">Statistique inscription regime</a></li>
-                                </ul>
+                                <a href="<?= site_url('back/dashboard') ?>"><i class="fas fa-chart-bar"></i> Statistiques</a>
                             </li>
                             <li>
                                 <a><i class="fas fa-money-bill-wave"></i> Code <span class="fa fa-chevron-down"></span></a>

@@ -36,6 +36,7 @@ class Porte_monnaie extends CI_Controller
     public function mon_compte(){
         $data['porte_feuilles'] = $this->porte_monnaie_model->porte_feuille_par_utilisateur();
         $data['transactions']=$this->porte_monnaie_model->transactions();
+
         $this->load->view('front/templates/header');
         $this->load->view('front/templates/navbar');
         $this->load->view('front/templates/sidebar');

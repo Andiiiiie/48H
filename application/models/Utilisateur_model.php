@@ -84,4 +84,40 @@ class Utilisateur_model extends CI_Model
         $this->db->insert('insertion_code', $data);
         return TRUE;
     }
+
+    public function get_nb_utilisateur()
+    {
+        return $this->db->count_all('utilisateur');
+    }
+
+    public function taux_conversion()
+    {
+        // count inscription_regime distinct id_utilisateur
+        $this->db->distinct();
+        $this->db->select('id_utilisateur');
+        $this->db->from('inscription_regime');
+        $query = $this->db->get();
+        $nb_utilisateur_inscrit = $query->num_rows();
+
+
+        return round($nb_utilisateur_inscrit / $this->get_nb_utilisateur() * 100, 2);
+    }
+
+    public function montant_moyen()
+    {
+        // montant moyenne des porte feuilles
+        $this->db->select_avg('montant');
+        $this->db->from('porte_feuille');
+        $query = $this->db->get();
+        return round($query->row()->montant, 2);
+    }
+
+    public function moyenne_objectif()
+    {
+        // moyenne des objectifs
+        $this->db->select_avg('poids_vise');
+        $this->db->from('objectif');
+        $query = $this->db->get();
+        return round($query->row()->poids_vise, 2);
+    }
 }

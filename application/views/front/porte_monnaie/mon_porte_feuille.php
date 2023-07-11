@@ -4,7 +4,7 @@
             <div class="card card-light-danger">
                 <div class="card-body">
                     <p class="mb-4">Votre argent sur votre compte actuel</p>
-                    <p class="fs-30 mb-2"><?php echo $porte_feuilles['montant'] ?>€</p>
+                    <p class="fs-30 mb-2">MGA <?php echo $porte_feuilles ?></p>
                     <p>Compte rechargable via code </p>
                 </div>
             </div>

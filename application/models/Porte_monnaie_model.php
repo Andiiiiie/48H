@@ -108,11 +108,27 @@ class Porte_monnaie_model extends CI_Model
 
 
     public function porte_feuille_par_utilisateur(){
-        $id_porte_feuille = $this->session->userdata('user_id_porte_feuille');
-        $this->db->where('id_porte_feuille', $id_porte_feuille);
-        $query = $this->db->get('porte_feuille');
+        $id_utilisateur = $this->session->userdata('user_id');
+        // select sum(montant) from insertion_code where id_insertion_code = 1 join code on insertion_code.id_code = code.id_code
+        $this->db->select('montant');
+        $this->db->from('insertion_code');
+        $this->db->join('code', 'insertion_code.id_code = code.id_code');
+        $this->db->where('id_utilisateur', $id_utilisateur);
+        $this->db->where('etat', 10);
+        $query = $this->db->get();
         $result = $query->result_array();
-        return $result[0];
+        $total = 0;
+        foreach ($result as $row) {
+            $total += $row['montant'];
+        }
+
+        // set montant porte feuille
+        $id_portefeuille = $this->db->get_where('utilisateur', array('id_utilisateur' => $id_utilisateur))->row()->id_porte_feuille;
+        $this->db->set('montant', $total);
+        $this->db->where('id_porte_feuille', $id_portefeuille);
+        $this->db->update('porte_feuille');
+
+        return $total;
     }
 
     public function transactions()
