@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080';
+$config['base_url'] = 'http://project48.great-site.net';
 
 /*
 |--------------------------------------------------------------------------
@@ -482,7 +482,7 @@ $config['csrf_exclude_uris'] = array();
 | even be a line of whitespace at the end of one of your scripts.  For
 | compression to work, nothing can be sent before the output buffer is called
 | by the output class.  Do not 'echo' any values with compression enabled.
-|
+
 */
 $config['compress_output'] = FALSE;
 
