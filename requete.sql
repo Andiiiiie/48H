@@ -76,3 +76,15 @@ SELECT C.interval_debut, C.interval_fin, R.designation, P.designation FROM REGIM
     WHERE R.id_regime = 1 );
 
 ( SELECT O.poids_vise FROM OBJECTIF O WHERE id_utilisateur = 1);
+
+SELECT tu.id_utilisateur ,tu.date_implementation, t.remise, t.designation, t.prix FROM
+    type_utilisateur tu 
+        join types t on tu.id_type = t.id_type 
+    WHERE tu.id_utilisateur = 1;
+
+
+
+SELECT FROM PARAMETRES R
+    Join details_patient D_P
+        ON R.id_parametre = D_P.id_parametre
+    WHERE D_P.id_utilisateur = 1;

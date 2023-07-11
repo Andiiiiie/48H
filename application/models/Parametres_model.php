@@ -8,9 +8,9 @@
         }
 
         function obtenir_tous_les_parametres(){
-            $this->db->select('*');
-            $this->db->from('parametres');
-            $query = $this->db->get();
+            $id_utilisateur = $this->session->userdata('user_id');
+            $sql = "SELECT * FROM parametres";
+            $query = $this->db->query($sql);
             return $query->result_array();
         }
     }

@@ -4,24 +4,19 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/front/dashboard') ?>">
-                <i class="menu-icon fas fa-home-alt"></i>
-                <span class="menu-title">Acceuil</span>
+            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/mon_regime') ?>">
+                <i class="menu-icon fas fa-utensils"></i>
+                <span class="menu-title">Mon regime</span>
             </a>
         </li>
+        <?php if(!isset($_SESSION['objectif'])) { ?>
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/front/regime/inserer_details') ?>">
                 <i class="menu-icon fas fa-info-circle"></i>
                 <span class="menu-title">Compléter mon profil</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/mon_regime') ?>">
-                <i class="menu-icon fas fa-utensils"></i>
-                <span class="menu-title">Mon régime</span>
-            </a>
-        </li>
-        
+        <?php } ?>
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/front/regime/proposition_regime') ?>">
                 <i class="menu-icon fas fa-star"></i>
