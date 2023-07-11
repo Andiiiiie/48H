@@ -1,21 +1,17 @@
 
 <?php if(isset($regimes)) { ?>
   <div class="row">
-    <h3>Vous êtes inscrit au régime</h3>
+    <h3>Vous êtes inscrit au régime   <a href="<?php echo base_url('index.php/front/regime/generate_pdf_regime') ?>"><button class="btn btn-primary" >Generer</button></a></h3>
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card tale-bg">
         <div class="card-people mt-auto">
           <a href="<?php echo base_url('index.php/front/regime/details_regime/'.$regimes['id_regime']) ?>">
-            <img src="<?php echo base_url('assets/images/dashboard/people.png') ?>" alt="people">
+            <img src="<?php echo base_url('assets/images/'.$regimes['image_path'].'.jpg') ?>" alt="people">
           </a>
           <div class="weather-info">
             <div class="d-flex">
               <div>
-                <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
-              </div>
-              <div class="ml-2">
-                <h4 class="location font-weight-normal"><?php echo $regimes['designation'] ?></h4>
-                <h6 class="font-weight-normal">India</h6>
+                <h1 class="location font-weight-normal"><?php echo $regimes['designation'] ?></h1>
               </div>
             </div>
           </div>
@@ -25,6 +21,6 @@
   </div>
   <div class="row">
     <!-- Content for the second row goes here -->
-  
-    </div>
-    <?php } ?>
+
+  </div>
+  <?php } ?>

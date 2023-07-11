@@ -8,6 +8,14 @@ class Regime_model extends CI_Model
         $this->load->database();
     }
 
+    public function regime_by_id($id_regime){
+        $this->db->select('*');
+        $this->db->from('regime');
+        $this->db->where('id_regime', $id_regime);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result[0];
+    }
     // traitement s'inscrire à un nouveau regime
     public function insertion_regime($id_regime){
         $details_regime = $this->details_regime_by_id($id_regime);
@@ -22,13 +30,28 @@ class Regime_model extends CI_Model
         $this->inserer_inscription_regime($duree, $prix, $id_regime);
     }
 
+
+    public function obtenir_type_utilisateur(){
+        $id_utilisateur = $this->session->userdata('user_id');
+        $sql = "
+            SELECT tu.id_utilisateur, tu.date_implementation, t.remise, t.designation, t.prix FROM
+            type_utilisateur tu 
+                join types t on tu.id_type = t.id_type 
+            WHERE tu.id_utilisateur = $id_utilisateur;
+        ";
+        $query = $this->db->query($sql);
+        $result = $query->row_array();
+        return $result;
+    }
     // insertion du nouveau regime
     public function inserer_inscription_regime($duree, $prix, $id_regime){
+        $type_utilisateur = $this->obtenir_type_utilisateur();
+        $prix_reduit = $prix - ($prix * $type_utilisateur['remise'] / 100);
         $data = array(
             'id_utilisateur' => $this->session->userdata('user_id'),
             'id_regime' => $id_regime,
             'duree' => $duree,
-            'montant' => $prix
+            'montant' => $prix_reduit
         );
         $this->db->insert('inscription_regime', $data);
     }
@@ -54,7 +77,7 @@ class Regime_model extends CI_Model
         $this->load->model('porte_feuille_model');
         $id_utilisateur = $this->session->userdata('user_id');
         $porte_feuille = $this->porte_feuille_model->porte_feuille_par_utilisateur();
-        if(100000000000000000000000000000000 < $argent){
+        if($porte_feuille['montant'] < $argent){
             return false;
         }
         return true;
@@ -64,9 +87,12 @@ class Regime_model extends CI_Model
     public function obtenir_objectif(){
         $id_utilisateur = $this->session->userdata('user_id');
         $sql = "
-        SELECT * FROM OBJECTIF O WHERE id_utilisateur = $id_utilisateur";
+        SELECT * FROM OBJECTIF O WHERE id_utilisateur = $id_utilisateur order by id_objectif desc limit 1";
         $query = $this->db->query($sql);
         $result = $query->result_array();
+        if(count($result) == 0){
+            throw new Exception("PLEASE INSERT OBJECTIF AND DETAILS FIRST");
+        }
         return $result[0];
     }
 
@@ -99,6 +125,16 @@ class Regime_model extends CI_Model
         return $result[0];
     }
 
+    public function last_inscription($id_regime){
+        $id_utilisateur = $this->session->userdata('user_id');
+        $sql = "SELECT * FROM inscription_regime WHERE id_utilisateur = $id_utilisateur and id_regime = $id_regime";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+    public function price_insertion_regime(){
+
+    }
     public function obtenir_tarif_regime(){
         $sql = "SELECT * FROM TARIF_REGIME";
         $query = $this->db->query($sql);
@@ -116,7 +152,7 @@ class Regime_model extends CI_Model
             $ordre = "DESC";
         }
         $sql = "
-            SELECT * FROM (SELECT D_P.id_utilisateur, R.designation regime_designation, D_P.valeur, C.interval_debut, C.interval_fin, P.designation parametre_designation, R.id_regime, (E.poinds/E.duree) vitesse, count(R.id_regime) nombre FROM REGIME R
+            SELECT * FROM (SELECT D_P.id_utilisateur, R.image_path, R.designation regime_designation, D_P.valeur, C.interval_debut, C.interval_fin, P.designation parametre_designation, R.id_regime, (E.poinds/E.duree) vitesse, count(R.id_regime) nombre FROM REGIME R
             JOIN REGIME_CONTRAINTE C 
                 ON R.id_regime = C.id_regime
             JOIN PARAMETRES P
@@ -140,7 +176,7 @@ class Regime_model extends CI_Model
     public function regime_par_utilisateur()
     {
         $id_utilisateur = $this->session->userdata('user_id');
-        $sql = "SELECT R.id_regime id_regime, R.designation designation, I_G.date_regime date_regime, I_G.duree duree, I_G.montant montant FROM
+        $sql = "SELECT R.id_regime id_regime, R.image_path, R.designation designation, I_G.date_regime date_regime, I_G.duree duree, I_G.montant montant FROM
             REGIME R 
                 JOIN  INSCRIPTION_REGIME I_G
                     ON R.id_regime = I_G.id_regime
@@ -150,6 +186,20 @@ class Regime_model extends CI_Model
         if(count($result) == 0) {
             throw new Exception("Pas encode inscrit à un regime");
         }
+        return $result[0];
+    }
+
+    public function regime_par_utilisateur2()
+    {
+        $id_utilisateur = $this->session->userdata('user_id');
+        $sql = "SELECT R.id_regime id_regime, R.image_path, R.designation designation, I_G.date_regime date_regime, I_G.duree duree, I_G.montant montant FROM
+            REGIME R 
+                JOIN  INSCRIPTION_REGIME I_G
+                    ON R.id_regime = I_G.id_regime
+            WHERE I_G.id_utilisateur = $id_utilisateur";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        
         return $result[0];
     }
 

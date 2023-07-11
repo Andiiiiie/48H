@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS TRANSACTION_PORTE_FEUILLE;
 CREATE TABLE TRANSACTION_PORTE_FEUILLE(
     id_transaction_porte_feuille INT PRIMARY KEY AUTO_INCREMENT,
     id_porte_feuille INT,
-    date_implementation TIMESTAMP,
+    date_implementation TIMESTAMP default NOW(),
     valeur FLOAT,
     FOREIGN KEY(id_porte_feuille)  REFERENCES PORTE_FEUILLE(id_porte_feuille)
 );
@@ -35,7 +35,7 @@ CREATE TABLE UTILISATEUR (
     id_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50) NOT NULL,
     prenom VARCHAR(50) NOT NULL,
-    date_de_naissance TIMESTAMP NOT NULL,
+    date_de_naissance TIMESTAMP default NOW(),
     email VARCHAR(50) NOT NULL UNIQUE,
     mot_de_passe VARCHAR(50) NOT NULL,
     id_porte_feuille INT,
@@ -59,7 +59,8 @@ DROP TABLE IF EXISTS REGIME;
 
 CREATE TABLE REGIME(
     id_regime INT PRIMARY KEY AUTO_INCREMENT,
-    designation VARCHAR(500)
+    designation VARCHAR(500),
+    image_path VARCHAR(500)
 );
 
 DROP TABLE IF EXISTS PLAT;
@@ -104,7 +105,7 @@ DROP TABLE IF EXISTS TARIF_REGIME;
 
 CREATE TABLE TARIF_REGIME(
     id_tarif_regime INT PRIMARY KEY AUTO_INCREMENT,
-    date_implementation TIMESTAMP,
+    date_implementation TIMESTAMP default NOW(),
     id_regime INT,
     duree INT,
     prix INT,
@@ -166,7 +167,7 @@ DROP TABLE IF EXISTS DETAILS_PATIENT;
 CREATE TABLE DETAILS_PATIENT(
     id_details_patient INT PRIMARY KEY AUTO_INCREMENT,
     id_utilisateur INT,
-    date_implementation TIMESTAMP,
+    date_implementation TIMESTAMP default NOW(),
     id_parametre INT,
     valeur FLOAT,
     FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur),
@@ -178,7 +179,7 @@ DROP TABLE IF EXISTS INSCRIPTION_REGIME;
 CREATE TABLE INSCRIPTION_REGIME(
     id_inscription_regime INT PRIMARY KEY AUTO_INCREMENT,
     id_regime INT,
-    date_regime TIMESTAMP,
+    date_regime TIMESTAMP default NOW(),
     id_utilisateur INT,
     duree INT,
     montant FLOAT,
@@ -215,3 +216,24 @@ CREATE TABLE REGIME_CONTRAINTE (
     FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre),
     CONSTRAINT CHK_operation CHECK (operation IN (-1, 0, 1))
 );
+
+DROP TABLE IF EXISTS TYPE_UTILISATEUR;
+
+CREATE TABLE TYPES(
+    id_type INT PRIMARY KEY AUTO_INCREMENT,
+    designation VARCHAR(255),
+    remise FLOAT,
+    prix FLOAT
+);
+
+DROP TABLE IF EXISTS TYPE_UTILISATEUR;
+
+CREATE TABLE TYPE_UTILISATEUR(
+    id_type_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
+    id_utilisateur INT,
+    id_type INT,
+    date_implementation TIMESTAMP default NOW(),
+    FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id_utilisateur),
+    FOREIGN KEY(id_type) REFERENCES TYPES(id_type)
+);
+
