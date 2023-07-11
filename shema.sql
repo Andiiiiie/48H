@@ -219,7 +219,7 @@ create table insertion_code(
                                foreign key(id_utilisateur) references utilisateur(id_utilisateur)
 );
 
-DROP TABLE IF EXISTS TYPE_UTILISATEUR;
+DROP TABLE IF EXISTS TYPES;
 
 CREATE TABLE TYPES(
     id_type INT PRIMARY KEY AUTO_INCREMENT,

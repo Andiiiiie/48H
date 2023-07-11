@@ -21,8 +21,8 @@ VALUES ('Johnson', 'Michael', '1992-07-15', 'michael.johnson@example.com', 'pass
 
 -- INSERTION DES TYPES
 
-INSERT INTO TYPES (designation, remise) VALUES ('Normal', 0);
-INSERT INTO TYPES (designation, remise) VALUES ('Gold', 15);
+INSERT INTO TYPES (designation, remise, prix) VALUES ('Gold', 15, 10);
+INSERT INTO TYPES (designation, remise, prix) VALUES ('Normal', 0, 0);
 
 
 -- INSERTION DANS TYPE_UTILISATEUR

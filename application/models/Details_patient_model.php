@@ -8,11 +8,28 @@ class Details_patient_model extends CI_Model
         $this->load->database();
     }
 
+    public function get_gold_pack(){
+        $sql = "select * from types where designation = 'Gold'";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+
+    public function update_porte_feuille($argent){
+        $id_utilisateur = $this->session->userdata("user_id");
+        $sql = "update porte_feuille set montant = montant - $argent where id_porte_feuille = ( select id_porte_feuille from utilisateur where id_utilisateur = $id_utilisateur)";
+        $query = $this->db->query($sql);
+     //   $query->exec();
+    }
+
     public function process_to_gold(){
+        $gold_pack = $this->get_gold_pack();
+        var_dump($gold_pack);
+        $this->update_porte_feuille($gold_pack['prix']);
         $id_utilisateur = $this->session->userdata('user_id');
         $data = array(
             'id_utilisateur' => $id_utilisateur,
-            'id_type' => 1
+            'id_type' => $gold_pack["id_type"]
         );
         $this->db->insert('type_utilisateur', $data);
     }

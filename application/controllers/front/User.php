@@ -23,7 +23,7 @@
         }
         public function process_gold(){
             $this->Details_patient_model->process_to_gold();
-            redirect("front/user/pass_to_gold");
+            redirect("front/regime/proposition_regime");
         }
     }
 ?>
