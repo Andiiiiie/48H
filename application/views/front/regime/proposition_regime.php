@@ -1,11 +1,12 @@
 
-        <?php if (isset($regimes)) { ?>
+        <?php if (isset($regimes)) { 
+          ?>
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
-                <div class="card-people mt-auto">
-                      <a href="<?php echo base_url('index.php/front/regime/details_regime/'.$regimes['id_regime']) ?>">
-                          <img src="<?php echo base_url('assets/images/dashboard/OIP.jpg') ?>" alt="people">
+                <div class="card-people mt-auto hover-effect">
+                      <a href="<?php echo base_url('index.php/front/regime/details_regime2/'.$regimes['id_regime']) ?>">
+                          <img src="<?php echo base_url('assets/images/'.$regimes['image_path'].'.jpg') ?>" alt="people">
                       </a>
                     
                   <div class="weather-info">
@@ -37,8 +38,8 @@
                   <div class="card card-dark-blue">
                     <div class="card-body">
                       <p class="mb-4">Tarif</p>
-                      <p class="fs-30 mb-2"><?php echo $regime_tarif['prix'] ?> AR</p>
-                      <p>22.00% (<?php echo $regime_tarif['duree'] ?> days)</p>
+                      <p class="fs-30 mb-2">A partir de <?php echo $regime_tarif['prix'] ?> AR</p>
+                      <p>Acceder à ce regime sur une possibilité de remise de <?php echo $type_user['remise'] ?>% (<?php echo $regime_tarif['duree'] ?> days)</p>
                     </div>
                   </div>
                 </div>
@@ -65,9 +66,10 @@
               </div>
                 <div class="row">
                     <div class="col-md-5">
+                      <br>
                         <a href="<?php echo base_url('index.php/front/regime/s_inscrire/'.$regimes['id_regime']) ?>"><button class="btn btn-primary btn-lg btn-block">S'incrire</button></a>
                         
-                        <button class="btn btn-dark btn-lg btn-block">Voir d'autre proposition</button>
+                        
                     </div>
                     <div class="col-md-7">
                     </div>
@@ -76,3 +78,11 @@
         </div>
     </div>
     <?php } ?>
+    <style>
+    .hover-effect:hover {
+      background-color: #ff5a5f;
+      color: #ffffff;
+      cursor: pointer;
+      /* Add any additional styles you want for the hover effect */
+    }
+  </style>

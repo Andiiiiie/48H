@@ -36,12 +36,12 @@
                     <div>
                         <span class="text-danger"><?= get_error($errors, 'email') ?></span>
                         <input type="email" class="form-control" placeholder="Email"
-                               name="email" value="<?= set_value('email') ?>" required/>
+                               name="email" value="<?= set_value('email','admin@example.com') ?>" required/>
                     </div>
                     <div>
                         <span class="text-danger"><?= get_error($errors, 'motDePasse') ?></span>
                         <input type="text" class="form-control" placeholder="Mot de passe"
-                                name="motDePasse" value="<?= set_value('motDePasse') ?>" required/>
+                                name="motDePasse" value="<?= set_value('motDePasse','admin123') ?>" required/>
                     </div>
                     <div>
                         <button class="btn btn-default submit" type="submit">Se connecter</button>
