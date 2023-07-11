@@ -54,7 +54,8 @@ class Regime_model extends CI_Model
         $this->load->model('porte_feuille_model');
         $id_utilisateur = $this->session->userdata('user_id');
         $porte_feuille = $this->porte_feuille_model->porte_feuille_par_utilisateur();
-        if(100000000000000000000000000000000 < $argent){
+        $solde_porte_feuille=$this->porte_monnaie_model->porte_feuille_par_utilisateur();
+        if($solde_porte_feuille['montant']< $argent){
             return false;
         }
         return true;

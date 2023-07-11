@@ -62,4 +62,22 @@ class Porte_monnaie_model extends CI_Model
         }
         return TRUE;
     }
+
+
+    public function porte_feuille_par_utilisateur(){
+        $id_porte_feuille = $this->session->userdata('user_id_porte_feuille');
+        $this->db->where('id_porte_feuille', $id_porte_feuille);
+        $query = $this->db->get('porte_feuille');
+        $result = $query->result_array();
+        return $result[0];
+    }
+
+    public function transactions()
+    {
+        $id_porte_feuille = $this->session->userdata('user_id_porte_feuille');
+        $this->db->where('id_porte_feuille', $id_porte_feuille);
+        $query = $this->db->get('transaction_porte_feuille');
+        $result = $query->result_array();
+        return $result;
+    }
 }
