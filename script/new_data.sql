@@ -50,7 +50,7 @@ INSERT INTO PLAT_DETAIL (composition, image_path, id_plat) VALUES ('Poulet', '/c
 INSERT INTO ACTIVITE (designation, image_path) VALUES ('Natation', '/chemin/vers/image1.jpg');
 INSERT INTO ACTIVITE (designation, image_path) VALUES ('Basket-ball', '/chemin/vers/image2.jpg');
 INSERT INTO ACTIVITE (designation, image_path) VALUES ('Foot-ball', '/chemin/vers/image3.jpg');
-
+000000000
 -- Insertion de données dans la table ACTIVITE_DETAIL
 INSERT INTO ACTIVITE_DETAIL (composition, image_path, id_activite) VALUES ('1 heure piscine municipale', '/chemin/vers/image1.jpg', 1);
 INSERT INTO ACTIVITE_DETAIL (composition, image_path, id_activite) VALUES ('Programme entrainement maitre joky', '/chemin/vers/image2.jpg', 2);
@@ -68,7 +68,6 @@ INSERT INTO TARIF_REGIME (date_implementation, id_regime, duree, prix) VALUES (N
 INSERT INTO TARIF_REGIME (date_implementation, id_regime, duree, prix) VALUES (NOW(), 1, 5000, 500);
 INSERT INTO TARIF_REGIME (date_implementation, id_regime, duree, prix) VALUES (NOW(), 2, 5000, 900);
 INSERT INTO TARIF_REGIME (date_implementation, id_regime, duree, prix) VALUES (NOW(), 3, 5000, 1000);
-
 
 -- Insertion de données dans la table EFFET
 INSERT INTO EFFET (id_regime, duree, poinds) VALUES (1, 30, 2.5);

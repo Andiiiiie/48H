@@ -12,5 +12,6 @@
             $this->Details_patient_model->inserer_details();
             redirect("front/regime/inserer_details");
         }
+
     }
 ?>
