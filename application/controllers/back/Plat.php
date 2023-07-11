@@ -118,4 +118,15 @@ class Plat extends CI_Controller {
         $this->load->view('back/plat/supprimer_composition', $data);
         $this->load->view('back/templates/footer');
     }
+
+    public function insertion()
+    {
+        $data['errors'] = array();
+
+        $this->load->view('back/templates/header');
+        $this->load->view('back/templates/navbar');
+        $this->load->view('back/templates/sidebar');
+        $this->load->view('back/plat/insertion', $data);
+        $this->load->view('back/templates/footer');
+    }
 }
