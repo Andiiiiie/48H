@@ -29,8 +29,7 @@ class Regime_model extends CI_Model
         }
         $this->inserer_inscription_regime($duree, $prix, $id_regime);
     }
-
-
+    // obtenir objectif
     public function obtenir_type_utilisateur(){
         $id_utilisateur = $this->session->userdata('user_id');
         $sql = "

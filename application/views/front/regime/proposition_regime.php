@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
-                <div class="card-people mt-auto">
+                <div class="card-people mt-auto hover-effect">
                       <a href="<?php echo base_url('index.php/front/regime/details_regime2/'.$regimes['id_regime']) ?>">
                           <img src="<?php echo base_url('assets/images/'.$regimes['image_path'].'.jpg') ?>" alt="people">
                       </a>
@@ -78,3 +78,11 @@
         </div>
     </div>
     <?php } ?>
+    <style>
+    .hover-effect:hover {
+      background-color: #ff5a5f;
+      color: #ffffff;
+      cursor: pointer;
+      /* Add any additional styles you want for the hover effect */
+    }
+  </style>
