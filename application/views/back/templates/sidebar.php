@@ -44,15 +44,15 @@
                             <li>
                                 <a><i class="fas fa-futbol"></i> Sport <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="">Liste</a></li>
-                                    <li><a href="">Insertion</a></li>
+                                    <li><a href="<?= site_url('back/sport/insertion')?>">Insertion des activites </a></li>
+                                    <li><a href="<?= site_url('back/sport/liste')?>">Liste des activites</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a><i class="fas fa-utensils"></i> Plat <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="">Liste des plats</a></li>
-                                    <li><a href="">Ajouter un plat</a></li>
+                                    <li><a href="<?= site_url('back/plat/insertion') ?>">Ajouter un plat</a></li>
                                     <li><a href="<?= site_url('back/plat/compositions') ?>">Liste des compositions</a></li>
                                     <li><a href="<?= site_url('back/plat/ajout_composition') ?>">Ajouter un composition</a></li>
                                 </ul>

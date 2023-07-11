@@ -118,4 +118,51 @@ class Plat extends CI_Controller {
         $this->load->view('back/plat/supprimer_composition', $data);
         $this->load->view('back/templates/footer');
     }
+
+    public function insertion()
+    {
+        $data['errors'] = array();
+        $this->form_validation->set_rules('designation', 'Designation', 'trim|required');
+
+        if ($this->form_validation->run() == true) {
+            $config['upload_path'] = 'uploads/composition/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['max_size'] = 2048;
+            $config['encrypt_name'] = true;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('userfile')) {
+                $uploadData = $this->upload->data();
+                $fileUrl =  $config['upload_path'] . $uploadData['file_name'];
+
+                $ingredients = $this->input->post('ingredient');
+                // Vérifier si des ingrédients ont été sélectionnés
+                if (!empty($ingredients)) {
+                    // Parcourir les ingrédients sélectionnés
+                    foreach ($ingredients as $ingredient) {
+                        echo $ingredient; // Faites ce que vous voulez avec chaque ingrédient
+                    }
+                } else {
+                    echo "Aucun ingrédient sélectionné.";
+                }
+
+                $this->plat_model->insert_composition($this->input->post('composition'), $fileUrl);
+                $this->session->set_flashdata('success', array("Composition ok"));
+                redirect('back/plat/compositions');
+            } else {
+                $error = $this->upload->display_errors();
+                $data['errors']['userfile'] = $error;
+            }
+        } else {
+            $data['errors'] = $this->form_validation->error_array();
+        }
+
+
+        $this->load->view('back/templates/header');
+        $this->load->view('back/templates/navbar');
+        $this->load->view('back/templates/sidebar');
+        $this->load->view('back/plat/insertion', $data);
+        $this->load->view('back/templates/footer');
+    }
 }
