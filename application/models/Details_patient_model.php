@@ -16,8 +16,8 @@ class Details_patient_model extends CI_Model
         $query = $this->db->get();
         $parametres = $query->result_array();
 
-       // $id_utilisateur = $this->session->userdata('user_id');
-        $id_utilisateur = 1;
+        $id_utilisateur = $this->session->userdata('user_id');
+        
         foreach($parametres as $parametre){
             $data = array(
                 'id_utilisateur' => $id_utilisateur,
@@ -26,5 +26,11 @@ class Details_patient_model extends CI_Model
             );
             $this->db->insert('details_patient', $data);
         }
+        $objectif = array(
+            'id_utilisateur' => $id_utilisateur,
+            'poids_vise' => $this->input->post('objectif'),
+            'nature' => $this->input->post('nature')
+        );
+        $this->db->insert('objectif', $objectif);
     }
 }

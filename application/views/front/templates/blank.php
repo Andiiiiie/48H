@@ -73,4 +73,3 @@
     </div>
 
     <!-- Eto fenoina -->
-</div>

@@ -42,6 +42,17 @@ CREATE TABLE UTILISATEUR (
     FOREIGN KEY(id_porte_feuille) REFERENCES PORTE_FEUILLE(id_porte_feuille)
 );
 
+DROP TABLE IF EXISTS OBJECTIF;
+
+CREATE TABLE OBJECTIF(
+    id_objectif INT PRIMARY KEY AUTO_INCREMENT,
+    poids_vise VARCHAR(255),
+    id_utilisateur INT,
+    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
+);
+
+ALTER TABLE OBJECTIF ADD COLUMN nature INT;
+
 -- table contenant les listes des regimes
 
 DROP TABLE IF EXISTS REGIME;
@@ -191,14 +202,16 @@ CREATE TABLE ADMINISTRATEUR (
     mot_de_passe VARCHAR(255)
 );
 
-DROP TABLE IF EXISTS INSERTION_CODE;
+DROP TABLE IF EXISTS REGIME_CONTRAINTE;
 
-CREATE TABLE INSERTION_CODE(
-    id_insertion_code INT PRIMARY KEY AUTO_INCREMENT,
-    id_code INT NOT NULL,
-    id_utilisateur INT NOT NULL,
-    etat INT NOT NULL DEFAULT 0,
-    date_implementation TIMESTAMP default CURRENT_TIMESTAMP,
-    FOREIGN KEY(id_code) REFERENCES CODE(id_code),
-    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
+CREATE TABLE REGIME_CONTRAINTE (
+    id_regime_contrain INT PRIMARY KEY AUTO_INCREMENT,
+    id_regime INT,
+    id_parametre INT,
+    contrainte VARCHAR(255),
+    interval_debut FLOAT,
+    interval_fin FLOAT,
+    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
+    FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre),
+    CONSTRAINT CHK_operation CHECK (operation IN (-1, 0, 1))
 );

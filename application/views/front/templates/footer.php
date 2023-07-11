@@ -1,4 +1,5 @@
 </div>
+</div>
 
 <!-- plugins:js -->
 <script src="<?=base_url('assets/vendors/js/vendor.bundle.base.js')?>"></script>

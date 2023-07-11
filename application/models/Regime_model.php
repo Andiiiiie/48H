@@ -8,10 +8,138 @@ class Regime_model extends CI_Model
         $this->load->database();
     }
 
+    // traitement s'inscrire à un nouveau regime
+    public function insertion_regime($id_regime){
+        $details_regime = $this->details_regime_by_id($id_regime);
+        $objectif = $this->obtenir_objectif();
+        $duree = $objectif['poids_vise'] / $details_regime['vitesse'];
+        echo $duree;
+        $prix = $this->obtenir_prix_approprie($duree, $id_regime);
+        $bol = $this->check_porte_feuille($prix);
+        if($bol == false){
+            throw new Exception("Porte feuille insuffisant");
+        }
+        $this->inserer_inscription_regime($duree, $prix, $id_regime);
+    }
+
+    // insertion du nouveau regime
+    public function inserer_inscription_regime($duree, $prix, $id_regime){
+        $data = array(
+            'id_utilisateur' => $this->session->userdata('user_id'),
+            'id_regime' => $id_regime,
+            'duree' => $duree,
+            'montant' => $prix
+        );
+        $this->db->insert('inscription_regime', $data);
+    }
+
+    // obtenir prix approprie du regime
+    public function obtenir_prix_approprie($duree, $id_regime){
+        $sql = "
+            SELECT TR.prix FROM TARIF_REGIME TR
+            WHERE TR.duree >= $duree and id_regime=$id_regime order by tr.duree desc limit 1
+        ";
+        echo $sql;
+        $query = $this->db->query($sql);
+        $result = $query->row();
+        if(count($result) == 0) {
+            throw new Exception("No appropriate price found");
+        }
+        var_dump($result);
+        return $result->prix;
+    }
+
+    // check porte feuillle si valide
+    public function check_porte_feuille($argent){
+        $this->load->model('porte_feuille_model');
+        $id_utilisateur = $this->session->userdata('user_id');
+        $porte_feuille = $this->porte_feuille_model->porte_feuille_par_utilisateur();
+        if(100000000000000000000000000000000 < $argent){
+            return false;
+        }
+        return true;
+    }
+
+    // obtenir l'objectif de l'utilisateur en cours
+    public function obtenir_objectif(){
+        $id_utilisateur = $this->session->userdata('user_id');
+        $sql = "
+        SELECT * FROM OBJECTIF O WHERE id_utilisateur = $id_utilisateur";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+
+    public function details_regime_by_id($id_regime){
+        $sql = "
+            SELECT R.id_regime, R.designation, TR.date_implementation, TR.duree, TR.prix, (E.poinds / E.duree) vitesse FROM REGIME R
+            JOIN TARIF_REGIME TR 
+                ON R.id_regime = TR.id_regime
+            JOIN EFFET E
+                ON E.id_regime = R.id_regime
+            WHERE R.id_regime = $id_regime
+        ";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        
+        return $result[0];
+    }
+
+    public function obtenir_regime_par_id($id_regime){
+        $sql = "SELECT * FROM REGIME WHERE id_regime = $id_regime";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+    
+    public function identifier_regime_valiede($id_regime){
+        $sql = "SELECT * FROM tarif_REGIME WHERE id_regime = $id_regime";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+
+    public function obtenir_tarif_regime(){
+        $sql = "SELECT * FROM TARIF_REGIME";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        return $result[0];
+    }
+
+    public function obtenir_regime_optimisee($ordre){
+        $id_utilisateur = $this->session->userdata('user_id');
+        $objectif = $this->obtenir_objectif();
+        if($objectif['nature'] == -1) {
+            $ordre = "ASC";
+        }
+        else{
+            $ordre = "DESC";
+        }
+        $sql = "
+            SELECT * FROM (SELECT D_P.id_utilisateur, R.designation regime_designation, D_P.valeur, C.interval_debut, C.interval_fin, P.designation parametre_designation, R.id_regime, (E.poinds/E.duree) vitesse, count(R.id_regime) nombre FROM REGIME R
+            JOIN REGIME_CONTRAINTE C 
+                ON R.id_regime = C.id_regime
+            JOIN PARAMETRES P
+                ON P.id_parametre = C.id_parametre
+            JOIN DETAILS_PATIENT D_P
+                ON D_P.id_parametre = P.id_parametre
+            JOIN EFFET E
+                ON E.id_regime = R.id_regime
+            WHERE D_P.valeur BETWEEN C.interval_debut AND C.interval_fin group by R.id_regime) AS T
+            WHERE T.nombre = (SELECT count(*) FROM PARAMETRES)  AND T.id_utilisateur = $id_utilisateur
+            ORDER BY T.vitesse $ordre
+        ";
+        $query = $this->db->query($sql);    
+        $result = $query->result_array();
+        if(count($result) == 0) {
+            throw new Exception("No regime found");
+        }
+        return $result[0];
+    }
+
     public function regime_par_utilisateur()
     {
-        //$id_utilisateur = $this->session->userdata('user_id');
-        $id_utilisateur = 1;
+        $id_utilisateur = $this->session->userdata('user_id');
         $sql = "SELECT R.id_regime id_regime, R.designation designation, I_G.date_regime date_regime, I_G.duree duree, I_G.montant montant FROM
             REGIME R 
                 JOIN  INSCRIPTION_REGIME I_G
@@ -19,6 +147,9 @@ class Regime_model extends CI_Model
             WHERE I_G.id_utilisateur = $id_utilisateur";
         $query = $this->db->query($sql);
         $result = $query->result_array();
+        if(count($result) == 0) {
+            throw new Exception("Pas encode inscrit à un regime");
+        }
         return $result[0];
     }
 
