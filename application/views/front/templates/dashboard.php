@@ -34,7 +34,7 @@
             <div class="card card-tale">
                 <div class="card-body">
                     <p class="mb-4">Montant dans porte monnaie</p>
-                    <p class="fs-30 mb-2">400</p>
+                    <p class="fs-30 mb-2"><?= $montant['montant'] ?></p>
                     <p>rechargable via code </p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="card card-dark-blue">
                 <div class="card-body">
                     <p class="mb-4">Codes encore disponibles</p>
-                    <p class="fs-30 mb-2">1000</p>
+                    <p class="fs-30 mb-2"><?= $nb_code ?></p>
                     <p>A usage unique</p>
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="card card-light-blue">
                 <div class="card-body">
                     <p class="mb-4">Nombre de regimes disponibles</p>
-                    <p class="fs-30 mb-2">34</p>
+                    <p class="fs-30 mb-2"><?= $nb_regime ?></p>
                     <p>Fait et adapte selon vos objectifs </p>
                 </div>
             </div>
@@ -62,8 +62,8 @@
         <div class="col-md-6 stretch-card transparent">
             <div class="card card-light-danger">
                 <div class="card-body">
-                    <p class="mb-4">Taux de reussite de nos methodes</p>
-                    <p class="fs-30 mb-2">80%</p>
+                    <p class="mb-4">Reussite de nos methodes</p>
+                    <p class="fs-30 mb-2">80% prouvé par des experts</p>
                     <p>Maniere saine et pratique de gerer votre alimentation</p>
                 </div>
             </div>

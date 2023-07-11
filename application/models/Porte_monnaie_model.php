@@ -23,6 +23,27 @@ class Porte_monnaie_model extends CI_Model
         return $result;
     }
 
+    public function count_utilisable()
+    {
+        $this->db->select('code, montant');
+        $this->db->from('code');
+        $this->db->order_by('id_code', 'DESC');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        $count = 0;
+        foreach ($result as &$row) {
+            if($this->est_utilisable_code($row['code'])) {
+                $count++;
+            }
+        }
+        return $count;
+    }
+
+    public function count_regime()
+    {
+        return $this->db->count_all_results('regime');
+    }
+
     public function code_existe($code)
     {
         $this->db->where('code', $code);

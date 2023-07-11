@@ -24,7 +24,7 @@ class Auth extends CI_Controller {
         } else {
             $data['test'] = $this->utilisateur_model->inscription();
             $this->session->set_flashdata('success', array('Votre compte a été créé avec succès'));
-            redirect('front/dashboard');
+            redirect('front/regime/inserer_details');
         }
     }
 
