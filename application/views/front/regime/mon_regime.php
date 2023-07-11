@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="row" style="margin-top: 5%;">
+
+<?php if(isset($regimes)) { ?>
+  <div class="row">
     <h3>Vous êtes inscrit au régime</h3>
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card tale-bg">
@@ -24,5 +25,6 @@
   </div>
   <div class="row">
     <!-- Content for the second row goes here -->
-  </div>
-</div>
+  
+    </div>
+    <?php } ?>

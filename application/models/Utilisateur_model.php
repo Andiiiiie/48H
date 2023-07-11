@@ -40,7 +40,7 @@ class Utilisateur_model extends CI_Model
         if($query->num_rows() === 1) {
             $row = $query->row();
             $data = array(
-                'user_id' => $row->id,
+                'user_id' => $row->id_utilisateur,
                 'user_nom' => $row->nom,
                 'user_prenom' => $row->prenom,
                 'user_email' => $row->email,

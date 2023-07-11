@@ -10,6 +10,26 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/inserer_details') ?>">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Compléter mon profil</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/mon_regime') ?>">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Mon régime</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/proposition_regime') ?>">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Proposition de régime</span>
+            </a>
+        </li>
+        
         <!-- Example nav with dropdown (aza fafana) -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
