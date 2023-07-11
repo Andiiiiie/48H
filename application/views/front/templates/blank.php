@@ -26,4 +26,3 @@
     </div>
 
     <!-- Eto fenoina -->
-</div>

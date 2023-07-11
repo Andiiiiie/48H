@@ -10,12 +10,12 @@
                     <h6 class="font-weight-light">Connecter votre compte, pour continuer.</h6>
                     <?php echo form_open('front/auth/connexion', array('class'=>'pt-3')); ?>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-lg" placeholder="Email" value="<?= set_value('email') ?>"
+                            <input type="email" class="form-control form-control-lg" placeholder="Email" value="john.doe@example.com"
                                 name="email" required>
                             <span class="text-danger"><?= get_error($errors, 'email') ?></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Mot de passe" value="<?= set_value('motDePasse') ?>"
+                            <input type="text" class="form-control form-control-lg" placeholder="Mot de passe" value="password123"
                                 name="motDePasse" required>
                             <span class="text-danger"><?= get_error($errors, 'motDePasse') ?></span>
                         </div>

@@ -197,3 +197,17 @@ create table insertion_code(
                                foreign key(id_code) references code(id_code),
                                foreign key(id_utilisateur) references utilisateur(id_utilisateur)
 );
+
+DROP TABLE IF EXISTS REGIME_CONTRAINTE;
+
+CREATE TABLE REGIME_CONTRAINTE (
+                                   id_regime_contrain INT PRIMARY KEY AUTO_INCREMENT,
+                                   id_regime INT,
+                                   id_parametre INT,
+                                   contrainte VARCHAR(255),
+                                   interval_debut FLOAT,
+                                   interval_fin FLOAT,
+                                   FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
+                                   FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre),
+                                   CONSTRAINT CHK_operation CHECK (operation IN (-1, 0, 1))
+);

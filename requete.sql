@@ -35,3 +35,44 @@ SELECT R.designation, A_D.composition, A_D.image_path FROM REGIME R
     JOIN INSCRIPTION_REGIME I_G 
         ON R.id_regime = I_G.id_regime 
     WHERE R.id_regime = 1;
+
+-- VITESSE D'ACCROISSEMENT DE REGIME
+
+SELECT R.id_regime, R.designation, E.duree, E.poinds, (E.poinds / E.duree) vitesse FROM REGIME R
+    JOIN EFFET E 
+        ON R.id_regime = E.id_regime
+        ORDER BY vitesse DESC;
+
+-- OBTENIR LES REGIMES PAR CONTRAINTE
+
+SELECT * FROM (SELECT D_P.id_utilisateur, R.designation regime_designation, D_P.valeur, C.interval_debut, C.interval_fin, P.designation parametre_designation, R.id_regime, (E.poinds/E.duree) vitesse, count(R.id_regime) nombre FROM REGIME R
+    JOIN REGIME_CONTRAINTE C 
+        ON R.id_regime = C.id_regime
+    JOIN PARAMETRES P
+        ON P.id_parametre = C.id_parametre
+    JOIN DETAILS_PATIENT D_P
+        ON D_P.id_parametre = P.id_parametre
+    JOIN EFFET E
+        ON E.id_regime = R.id_regime
+    WHERE D_P.valeur BETWEEN C.interval_debut AND C.interval_fin group by R.id_regime) AS T
+    WHERE T.nombre = (SELECT count(*) FROM PARAMETRES)  AND T.id_utilisateur = 1
+    ORDER BY T.vitesse DESC
+;
+        
+-- OBTENIR CONTRAINTE PAR REGIME
+SELECT C.interval_debut, C.interval_fin, R.designation, P.designation FROM REGIME R
+    JOIN REGIME_CONTRAINTE C 
+        ON R.id_regime = C.id_regime
+    JOIN PARAMETRES P
+        ON P.id_parametre = C.id_parametre;
+
+-- PRIX DU REGIME
+
+( SELECT R.id_regime, R.designation, TR.date_implementation, TR.duree, TR.prix, (E.poinds / E.duree) vitesse FROM REGIME R
+    JOIN TARIF_REGIME TR 
+        ON R.id_regime = TR.id_regime
+    JOIN EFFET E
+        ON E.id_regime = R.id_regime
+    WHERE R.id_regime = 1 );
+
+( SELECT O.poids_vise FROM OBJECTIF O WHERE id_utilisateur = 1);

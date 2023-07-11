@@ -65,14 +65,12 @@ INSERT INTO R_REGIME_ACTIVITE (id_regime, id_activite) VALUES (2, 2);
 INSERT INTO R_REGIME_ACTIVITE (id_regime, id_activite) VALUES (3, 3);
 
 -- Insertion de données dans la table PARAMETRES
-INSERT INTO PARAMETRES (designation, type_champs) VALUES ('Paramètre 1', 'Type 1');
-INSERT INTO PARAMETRES (designation, type_champs) VALUES ('Paramètre 2', 'Type 2');
-INSERT INTO PARAMETRES (designation, type_champs) VALUES ('Paramètre 3', 'Type 3');
+INSERT INTO PARAMETRES (designation, type_champs) VALUES ('Pois', 'number');
+INSERT INTO PARAMETRES (designation, type_champs) VALUES ('Age', 'number');
 
 -- Insertion de données dans la table PARAMETRES_REGIMES
 INSERT INTO PARAMETRES_REGIMES (id_regime, id_parametre, intervale_depart, intervale_fin) VALUES (1, 1, 0.5, 1.5);
 INSERT INTO PARAMETRES_REGIMES (id_regime, id_parametre, intervale_depart, intervale_fin) VALUES (2, 2, 1.0, 2.0);
-INSERT INTO PARAMETRES_REGIMES (id_regime, id_parametre, intervale_depart, intervale_fin) VALUES (3, 3, 0.8, 1.2);
 
 -- Insertion de données dans la table DETAILS_PATIENT
 INSERT INTO DETAILS_PATIENT (id_utilisateur, date_implementation, id_parametre, valeur) VALUES (1, NOW(), 1, 1.2);
@@ -91,3 +89,4 @@ INSERT INTO ADMINISTRATEUR (email, mot_de_passe) VALUES ('admin@example.com', 'a
 INSERT INTO CODE(code, montant) VALUES ('CODE1', 100);
 INSERT INTO CODE(code, montant) VALUES ('CODE2', 200);
 INSERT INTO CODE(code, montant) VALUES ('CODE3', 300);
+
