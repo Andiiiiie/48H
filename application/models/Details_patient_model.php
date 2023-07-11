@@ -26,11 +26,24 @@ class Details_patient_model extends CI_Model
             );
             $this->db->insert('details_patient', $data);
         }
+
+        $poids_objectif = $this->input->post('objectif');
+        $nature_objectif = $this->input->post('nature');
+        if($nature_objectif == 0) // IMC TRATRARINA
+        {
+            $taille = $this->input->post("2") / 100;
+            $poids_objectif = $this->input->post("1") / t * t;
+        }
+
         $objectif = array(
             'id_utilisateur' => $id_utilisateur,
-            'poids_vise' => $this->input->post('objectif'),
+            'poids_vise' => $poids_objectif,
             'nature' => $this->input->post('nature')
         );
+
+        var_dump($objectif);
+        
+        $this->session->set_userdata("objectif", "1");
         $this->db->insert('objectif', $objectif);
     }
 }

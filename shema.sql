@@ -48,9 +48,10 @@ alter table objectif add column nature int;
 
 drop table if exists regime;
 
-create table regime(
-                       id_regime int primary key auto_increment,
-                       designation varchar(500)
+CREATE TABLE REGIME(
+    id_regime INT PRIMARY KEY AUTO_INCREMENT,
+    designation VARCHAR(500),
+    image_path VARCHAR(500)
 );
 
 drop table if exists plat;
@@ -93,13 +94,13 @@ create table activite_detail(
 
 drop table if exists tarif_regime;
 
-create table tarif_regime(
-                             id_tarif_regime int primary key auto_increment,
-                             date_implementation timestamp,
-                             id_regime int,
-                             duree int,
-                             prix int,
-                             foreign key(id_regime) references regime(id_regime)
+CREATE TABLE TARIF_REGIME(
+    id_tarif_regime INT PRIMARY KEY AUTO_INCREMENT,
+    date_implementation TIMESTAMP default NOW(),
+    id_regime INT,
+    duree INT,
+    prix INT,
+    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime)
 );
 
 -- effet du regime
@@ -166,15 +167,15 @@ create table details_patient(
 
 drop table if exists inscription_regime;
 
-create table inscription_regime(
-                                   id_inscription_regime int primary key auto_increment,
-                                   id_regime int,
-                                   date_regime timestamp,
-                                   id_utilisateur int,
-                                   duree int,
-                                   montant float,
-                                   foreign key(id_regime) references regime(id_regime),
-                                   foreign key(id_utilisateur) references utilisateur(id_utilisateur)
+CREATE TABLE INSCRIPTION_REGIME(
+    id_inscription_regime INT PRIMARY KEY AUTO_INCREMENT,
+    id_regime INT,
+    date_regime TIMESTAMP default NOW(),
+    id_utilisateur INT,
+    duree INT,
+    montant FLOAT,
+    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
+    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
 );
 
 drop table if exists code;
@@ -217,3 +218,24 @@ create table insertion_code(
                                foreign key(id_code) references code(id_code),
                                foreign key(id_utilisateur) references utilisateur(id_utilisateur)
 );
+
+DROP TABLE IF EXISTS TYPE_UTILISATEUR;
+
+CREATE TABLE TYPES(
+    id_type INT PRIMARY KEY AUTO_INCREMENT,
+    designation VARCHAR(255),
+    remise FLOAT,
+    prix FLOAT
+);
+
+DROP TABLE IF EXISTS TYPE_UTILISATEUR;
+
+CREATE TABLE TYPE_UTILISATEUR(
+    id_type_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
+    id_utilisateur INT,
+    id_type INT,
+    date_implementation TIMESTAMP default NOW(),
+    FOREIGN KEY(id_utilisateur) REFERENCES utilisateur(id_utilisateur),
+    FOREIGN KEY(id_type) REFERENCES TYPES(id_type)
+);
+
