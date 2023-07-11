@@ -1,204 +1,199 @@
-DROP DATABASE '48H';
 
-CREATE DATABASE IF NOT EXISTS `48H`;
-
-USE 48H;
-
--- UTILISATEUR
+-- utilisateur
 
 -- porte feuille de l'utilisateur
- 
-DROP TABLE IF EXISTS PORTE_FEUILLE;
 
-CREATE TABLE PORTE_FEUILLE(
-    id_porte_feuille INT PRIMARY KEY AUTO_INCREMENT,
-    montant FLOAT
+drop table if exists porte_feuille;
+
+create table porte_feuille(
+                              id_porte_feuille int primary key auto_increment,
+                              montant float
 );
 
 -- transaction sur l'etat du porte feuille de l'utilisateur
 
-DROP TABLE IF EXISTS TRANSACTION_PORTE_FEUILLE;
+drop table if exists transaction_porte_feuille;
 
-CREATE TABLE TRANSACTION_PORTE_FEUILLE(
-    id_transaction_porte_feuille INT PRIMARY KEY AUTO_INCREMENT,
-    id_porte_feuille INT,
-    date_implementation TIMESTAMP,
-    valeur FLOAT,
-    FOREIGN KEY(id_porte_feuille)  REFERENCES PORTE_FEUILLE(id_porte_feuille)
+create table transaction_porte_feuille(
+                                          id_transaction_porte_feuille int primary key auto_increment,
+                                          id_porte_feuille int,
+                                          date_implementation timestamp,
+                                          valeur float,
+                                          foreign key(id_porte_feuille)  references porte_feuille(id_porte_feuille)
 );
 
 -- table utilisateur
 
-DROP TABLE IF EXISTS UTILISATEUR;
+drop table if exists utilisateur;
 
-CREATE TABLE UTILISATEUR (
-    id_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(50) NOT NULL,
-    prenom VARCHAR(50) NOT NULL,
-    date_de_naissance TIMESTAMP NOT NULL,
-    email VARCHAR(50) NOT NULL UNIQUE,
-    mot_de_passe VARCHAR(50) NOT NULL,
-    id_porte_feuille INT,
-    FOREIGN KEY(id_porte_feuille) REFERENCES PORTE_FEUILLE(id_porte_feuille)
+create table utilisateur (
+                             id_utilisateur int primary key auto_increment,
+                             nom varchar(50) not null,
+                             prenom varchar(50) not null,
+                             date_de_naissance timestamp not null,
+                             email varchar(50) not null unique,
+                             mot_de_passe varchar(50) not null,
+                             id_porte_feuille int,
+                             foreign key(id_porte_feuille) references porte_feuille(id_porte_feuille)
 );
 
 -- table contenant les listes des regimes
 
-DROP TABLE IF EXISTS REGIME;
+drop table if exists regime;
 
-CREATE TABLE REGIME(
-    id_regime INT PRIMARY KEY AUTO_INCREMENT,
-    designation VARCHAR(500)
+create table regime(
+                       id_regime int primary key auto_increment,
+                       designation varchar(500)
 );
 
-DROP TABLE IF EXISTS PLAT;
+drop table if exists plat;
 
-CREATE TABLE PLAT(
-    id_plat INT PRIMARY KEY AUTO_INCREMENT,
-    designation VARCHAR(255),
-    image_path VARCHAR(500)
+create table plat(
+                     id_plat int primary key auto_increment,
+                     designation varchar(255),
+                     image_path varchar(500)
 );
 
-DROP TABLE IF EXISTS PLAT_DETAIL;
+drop table if exists plat_detail;
 
-CREATE TABLE PLAT_DETAIL(
-    id_plat_detail INT PRIMARY KEY AUTO_INCREMENT,
-    composition VARCHAR(255),
-    image_path VARCHAR(500),
-    id_plat INT,
-    FOREIGN KEY(id_plat) REFERENCES PLAT(id_plat)
+create table plat_detail(
+                            id_plat_detail int primary key auto_increment,
+                            composition varchar(255),
+                            image_path varchar(500),
+                            id_plat int,
+                            foreign key(id_plat) references plat(id_plat)
 );
 
-DROP TABLE IF EXISTS ACTIVITE;
+drop table if exists activite;
 
-CREATE TABLE ACTIVITE(
-    id_ACTIVITE INT PRIMARY KEY AUTO_INCREMENT,
-    designation VARCHAR(255),
-    image_path VARCHAR(500)
+create table activite(
+                         id_activite int primary key auto_increment,
+                         designation varchar(255),
+                         image_path varchar(500)
 );
 
-DROP TABLE IF EXISTS ACTIVITE_DETAIL;
+drop table if exists activite_detail;
 
-CREATE TABLE ACTIVITE_DETAIL(
-    id_activite_detail INT PRIMARY KEY AUTO_INCREMENT,
-    composition VARCHAR(255),
-    image_path VARCHAR(500),
-    id_activite INT,
-    FOREIGN KEY(id_activite) REFERENCES ACTIVITE(id_activite)
+create table activite_detail(
+                                id_activite_detail int primary key auto_increment,
+                                composition varchar(255),
+                                image_path varchar(500),
+                                id_activite int,
+                                foreign key(id_activite) references activite(id_activite)
 );
 
--- tarif de chaque regime 
+-- tarif de chaque regime
 
-DROP TABLE IF EXISTS TARIF_REGIME;
+drop table if exists tarif_regime;
 
-CREATE TABLE TARIF_REGIME(
-    id_tarif_regime INT PRIMARY KEY AUTO_INCREMENT,
-    date_implementation TIMESTAMP,
-    id_regime INT,
-    duree INT,
-    prix INT,
-    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime)
+create table tarif_regime(
+                             id_tarif_regime int primary key auto_increment,
+                             date_implementation timestamp,
+                             id_regime int,
+                             duree int,
+                             prix int,
+                             foreign key(id_regime) references regime(id_regime)
 );
 
 -- effet du regime
 
-DROP TABLE IF EXISTS EFFET;
+drop table if exists effet;
 
-CREATE TABLE EFFET(
-    id_effet INT PRIMARY KEY AUTO_INCREMENT,
-    id_regime INT,
-    duree INT,
-    poinds FLOAT,
-    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime)
+create table effet(
+                      id_effet int primary key auto_increment,
+                      id_regime int,
+                      duree int,
+                      poinds float,
+                      foreign key(id_regime) references regime(id_regime)
 );
 
-DROP TABLE IF EXISTS R_REGIME_PLAT;
+drop table if exists r_regime_plat;
 
-CREATE TABLE R_REGIME_PLAT(
-    id_regime INT,
-    id_plat INT,
-    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
-    FOREIGN KEY(id_plat) REFERENCES PLAT(id_plat)
+create table r_regime_plat(
+                              id_regime int,
+                              id_plat int,
+                              foreign key(id_regime) references regime(id_regime),
+                              foreign key(id_plat) references plat(id_plat)
 );
 
-DROP TABLE IF EXISTS R_REGIME_ACTIVITE;
+drop table if exists r_regime_activite;
 
-CREATE TABLE R_REGIME_ACTIVITE(
-    id_regime INT,
-    id_activite INT,
-    FOREIGN KEY (id_regime) REFERENCES REGIME(id_regime),
-    FOREIGN KEY (id_activite) REFERENCES ACTIVITE(id_activite)
+create table r_regime_activite(
+                                  id_regime int,
+                                  id_activite int,
+                                  foreign key (id_regime) references regime(id_regime),
+                                  foreign key (id_activite) references activite(id_activite)
 );
 
-DROP TABLE IF EXISTS PARAMETRES;
+drop table if exists parametres;
 
-CREATE TABLE PARAMETRES(
-    id_parametre INT PRIMARY KEY AUTO_INCREMENT,
-    designation VARCHAR(255),
-    type_champs VARCHAR(255)
+create table parametres(
+                           id_parametre int primary key auto_increment,
+                           designation varchar(255),
+                           type_champs varchar(255)
 );
 
-DROP TABLE IF EXISTS PARAMETRES_REGIMES;
+drop table if exists parametres_regimes;
 
-CREATE TABLE PARAMETRES_REGIMES(
-    id_parametre_regime INT PRIMARY KEY AUTO_INCREMENT,
-    id_regime INT,
-    id_parametre INT,
-    intervale_depart FLOAT,
-    intervale_fin FLOAT,
-    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
-    FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre)
+create table parametres_regimes(
+                                   id_parametre_regime int primary key auto_increment,
+                                   id_regime int,
+                                   id_parametre int,
+                                   intervale_depart float,
+                                   intervale_fin float,
+                                   foreign key(id_regime) references regime(id_regime),
+                                   foreign key(id_parametre) references parametres(id_parametre)
 );
 
-DROP TABLE IF EXISTS DETAILS_PATIENT;
+drop table if exists details_patient;
 
-CREATE TABLE DETAILS_PATIENT(
-    id_details_patient INT PRIMARY KEY AUTO_INCREMENT,
-    id_utilisateur INT,
-    date_implementation TIMESTAMP,
-    id_parametre INT,
-    valeur FLOAT,
-    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur),
-    FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre)
+create table details_patient(
+                                id_details_patient int primary key auto_increment,
+                                id_utilisateur int,
+                                date_implementation timestamp,
+                                id_parametre int,
+                                valeur float,
+                                foreign key(id_utilisateur) references utilisateur(id_utilisateur),
+                                foreign key(id_parametre) references parametres(id_parametre)
 );
 
-DROP TABLE IF EXISTS INSCRIPTION_REGIME;
+drop table if exists inscription_regime;
 
-CREATE TABLE INSCRIPTION_REGIME(
-    id_inscription_regime INT PRIMARY KEY AUTO_INCREMENT,
-    id_regime INT,
-    date_regime TIMESTAMP,
-    id_utilisateur INT,
-    duree INT,
-    montant FLOAT,
-    FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
-    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
+create table inscription_regime(
+                                   id_inscription_regime int primary key auto_increment,
+                                   id_regime int,
+                                   date_regime timestamp,
+                                   id_utilisateur int,
+                                   duree int,
+                                   montant float,
+                                   foreign key(id_regime) references regime(id_regime),
+                                   foreign key(id_utilisateur) references utilisateur(id_utilisateur)
 );
 
-DROP TABLE IF EXISTS CODE;
+drop table if exists code;
 
-CREATE TABLE CODE(
-    id_code INT PRIMARY KEY AUTO_INCREMENT,
-    code VARCHAR(10) NOT NULL UNIQUE,
-    montant FLOAT
+create table code(
+                     id_code int primary key auto_increment,
+                     code varchar(10) not null unique,
+                     montant float
 );
 
-DROP TABLE IF EXISTS ADMINISTRATEUR;
+drop table if exists administrateur;
 
-CREATE TABLE ADMINISTRATEUR (
-    id_administrateur INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) UNIQUE,
-    mot_de_passe VARCHAR(255)
+create table administrateur (
+                                id_administrateur int primary key auto_increment,
+                                email varchar(255) unique,
+                                mot_de_passe varchar(255)
 );
 
-DROP TABLE IF EXISTS INSERTION_CODE;
+drop table if exists insertion_code;
 
-CREATE TABLE INSERTION_CODE(
-    id_insertion_code INT PRIMARY KEY AUTO_INCREMENT,
-    id_code INT NOT NULL,
-    id_utilisateur INT NOT NULL,
-    etat INT NOT NULL DEFAULT 0,
-    date_implementation TIMESTAMP default CURRENT_TIMESTAMP,
-    FOREIGN KEY(id_code) REFERENCES CODE(id_code),
-    FOREIGN KEY(id_utilisateur) REFERENCES UTILISATEUR(id_utilisateur)
+create table insertion_code(
+                               id_insertion_code int primary key auto_increment,
+                               id_code int not null,
+                               id_utilisateur int not null,
+                               etat int not null default 0,
+                               date_implementation timestamp default current_timestamp,
+                               foreign key(id_code) references code(id_code),
+                               foreign key(id_utilisateur) references utilisateur(id_utilisateur)
 );
