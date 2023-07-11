@@ -32,4 +32,15 @@ class Porte_monnaie extends CI_Controller
         $this->load->view('front/porte_monnaie/ajouter', $data);
         $this->load->view('front/templates/footer');
     }
+
+    public function mon_compte(){
+        $data['porte_feuilles'] = $this->porte_monnaie_model->porte_feuille_par_utilisateur();
+        $data['transactions']=$this->porte_monnaie_model->transactions();
+
+        $this->load->view('front/templates/header');
+        $this->load->view('front/templates/navbar');
+        $this->load->view('front/templates/sidebar');
+        $this->load->view('front/porte_monnaie/mon_porte_feuille', $data);
+        $this->load->view('front/templates/footer');
+    }
 }

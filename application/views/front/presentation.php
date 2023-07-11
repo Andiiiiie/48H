@@ -57,7 +57,8 @@
                         <li><a href="#features">A propos</a></li>
                         <li><a href="#work-process">Nos methodes</a></li>
                         <li><a href="#testimonials">Temoignages</a></li>
-                        <li><a href="<?= site_url('front/Auth/connexion') ?>">Rejoignez-Nous</a></li>
+                        <li><a href="<?= site_url('front/auth/connexion') ?>">Rejoignez-Nous</a></li>
+                        <li><a href="<?= site_url('back/auth/connexion') ?>">Administration</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -262,7 +263,7 @@
                         <i><img src="<?= base_url('assets/images/testimonial-icon.png') ?>" alt=""></i>
                         <p>Proin a neque nisi. Nam ipsum nisi, venenatis ut nulla quis, egestas scelerisque orci. Maecenas a finibus odio.</p>
                         <div class="user-image">
-                            <img src="<?= base_url('assets/images/personnes/perso2.jpg') ?>" alt="">
+                            <img src="<?= base_url('assets/images/faces/face1.jpg') ?>" alt="">
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">Catherine Soft</h3>
@@ -280,7 +281,7 @@
                         <i><img src="<?= base_url('assets/images/testimonial-icon.png') ?>" alt=""></i>
                         <p>Integer molestie aliquam gravida. Nullam nec arcu finibus, imperdiet nulla vitae, placerat nibh. Cras maximus venenatis molestie.</p>
                         <div class="user-image">
-                            <img src="<?= base_url('assets/images/personnes/perso1.jpg') ?>" alt="">
+                            <img src="<?= base_url('assets/images/faces/face2.jpg') ?>" alt="">
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">Kelvin Wood</h3>
@@ -298,7 +299,7 @@
                         <i><img src="<?= base_url('assets/images/testimonial-icon.png') ?>" alt=""></i>
                         <p>Quisque diam odio, maximus ac consectetur eu, auctor non lorem. Cras quis est non ante ultrices molestie. Ut vehicula et diam at aliquam.</p>
                         <div class="user-image">
-                            <img src="<?= base_url('assets/images/personnes/perso3.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/faces/face3.jpg') ?>" alt="">
                         </div>
                         <div class="team-info">
                             <h3 class="user-name">David Martin</h3>

@@ -5,7 +5,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Les activites <small>sportives</small></h2>
+                    <h2>Les compositions<small>Pour les plats</small></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -15,26 +15,26 @@
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>
                         <tr>
-                            <th>Designation</th>
+                            <th>Composition</th>
                             <th>Image</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($sports as $sport): ?>
+                        <?php foreach ($compositions as $composition): ?>
                             <tr>
-                                <td><?= $sport['designation'] ?></td>
+                                <td><?= $composition['composition'] ?></td>
                                 <td>
-                                    <a href="<?= base_url($sport['image_path']) ?>" download>
-                                        <?= $sport['image_path'] ?> <i class="fas fa-download"></i>
+                                    <a href="<?= base_url($composition['image_path']) ?>" download>
+                                        <?= $composition['image_path'] ?> <i class="fas fa-download"></i>
                                     </a>
 
                                 </td>
                                 <td>
-                                    <a href="<?= site_url('back/sport/modifier/'.$sport['id_ACTIVITE']) ?>" class="btn btn-warning">
+                                    <a href="<?= site_url('back/plat/modifier_composition/'.$composition['id_plat_detail']) ?>" class="btn btn-warning">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="<?= site_url('back/sport/supprimer/'.$sport['id_ACTIVITE']) ?>" class="btn btn-danger">
+                                    <a href="<?= site_url('back/plat/supprimer_composition/'.$composition['id_plat_detail']) ?>" class="btn btn-danger">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
