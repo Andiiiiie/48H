@@ -50,4 +50,57 @@ class Code extends CI_Controller {
         $this->load->view('back/templates/footer');
 
     }
+
+
+    public function validation()
+    {
+        $data = array();
+        $data['codes'] = $this->code_model->get_code_a_valide();
+
+        $this->load->view('back/templates/header');
+        $this->load->view('back/templates/navbar');
+        $this->load->view('back/templates/sidebar');
+        $this->load->view('back/code/validation', $data);
+        $this->load->view('back/templates/footer');
+    }
+
+    public function valider($id_insertion_code)
+    {
+        $data = array();
+        $insertion_code = $this->code_model->get_insertion_code($id_insertion_code);
+        $data['code'] = $insertion_code;
+
+        if($this->input->server('REQUEST_METHOD') == "POST")
+        {
+            $this->code_model->valider($id_insertion_code);
+            $this->session->set_flashdata('success', array('Le montant a été ajouté sur le compte de l\'utilisateur'));
+            redirect('back/code/validation');
+        }
+
+        $this->load->view('back/templates/header');
+        $this->load->view('back/templates/navbar');
+        $this->load->view('back/templates/sidebar');
+        $this->load->view('back/code/valider', $data);
+        $this->load->view('back/templates/footer');
+    }
+
+    public function refuser($id_insertion_code)
+    {
+        $data = array();
+        $insertion_code = $this->code_model->get_insertion_code($id_insertion_code);
+        $data['code'] = $insertion_code;
+
+        if($this->input->server('REQUEST_METHOD') == "POST")
+        {
+            $this->code_model->refuser($id_insertion_code);
+            $this->session->set_flashdata('success', array("L'utilisateur a été informé de l'échec de l'opération"));
+            redirect('back/code/validation');
+        }
+
+        $this->load->view('back/templates/header');
+        $this->load->view('back/templates/navbar');
+        $this->load->view('back/templates/sidebar');
+        $this->load->view('back/code/refuser', $data);
+        $this->load->view('back/templates/footer');
+    }
 }

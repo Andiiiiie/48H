@@ -1,8 +1,4 @@
 
--- utilisateur
-
--- porte feuille de l'utilisateur
-
 drop table if exists porte_feuille;
 
 create table porte_feuille(
@@ -36,6 +32,17 @@ create table utilisateur (
                              id_porte_feuille int,
                              foreign key(id_porte_feuille) references porte_feuille(id_porte_feuille)
 );
+
+drop table if exists objectif;
+
+create table objectif(
+                         id_objectif int primary key auto_increment,
+                         poids_vise varchar(255),
+                         id_utilisateur int,
+                         foreign key(id_utilisateur) references utilisateur(id_utilisateur)
+);
+
+alter table objectif add column nature int;
 
 -- table contenant les listes des regimes
 
@@ -186,6 +193,19 @@ create table administrateur (
                                 mot_de_passe varchar(255)
 );
 
+drop table if exists regime_contrainte;
+
+create table regime_contrainte (
+                                   id_regime_contrain int primary key auto_increment,
+                                   id_regime int,
+                                   id_parametre int,
+                                   contrainte varchar(255),
+                                   interval_debut float,
+                                   interval_fin float,
+                                   foreign key(id_regime) references regime(id_regime),
+                                   foreign key(id_parametre) references parametres(id_parametre)
+);
+
 drop table if exists insertion_code;
 
 create table insertion_code(
@@ -196,18 +216,4 @@ create table insertion_code(
                                date_implementation timestamp default current_timestamp,
                                foreign key(id_code) references code(id_code),
                                foreign key(id_utilisateur) references utilisateur(id_utilisateur)
-);
-
-DROP TABLE IF EXISTS REGIME_CONTRAINTE;
-
-CREATE TABLE REGIME_CONTRAINTE (
-                                   id_regime_contrain INT PRIMARY KEY AUTO_INCREMENT,
-                                   id_regime INT,
-                                   id_parametre INT,
-                                   contrainte VARCHAR(255),
-                                   interval_debut FLOAT,
-                                   interval_fin FLOAT,
-                                   FOREIGN KEY(id_regime) REFERENCES REGIME(id_regime),
-                                   FOREIGN KEY(id_parametre) REFERENCES PARAMETRES(id_parametre),
-                                   CONSTRAINT CHK_operation CHECK (operation IN (-1, 0, 1))
 );
