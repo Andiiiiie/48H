@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller {
         $this->load->view('front/templates/navbar');
         $this->load->view('front/templates/sidebar');
         $this->load->view('front/templates/settings-panel');
-        $this->load->view('front/templates/blank'); # ito no copier na de ovaina miova
+        $this->load->view('front/templates/dashboard'); # ito no copier na de ovaina miova
         $this->load->view('front/templates/copyright');
         $this->load->view('front/templates/footer');
     }
