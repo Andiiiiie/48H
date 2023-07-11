@@ -50,8 +50,10 @@
                             <li>
                                 <a><i class="fas fa-utensils"></i> Plat <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="">Liste</a></li>
-                                    <li><a href="">Insertion</a></li>
+                                    <li><a href="">Liste des plats</a></li>
+                                    <li><a href="">Ajouter un plat</a></li>
+                                    <li><a href="<?= site_url('back/plat/compositions') ?>">Liste des compositions</a></li>
+                                    <li><a href="<?= site_url('back/plat/ajout_composition') ?>">Ajouter un composition</a></li>
                                 </ul>
                             </li>
                             <li>

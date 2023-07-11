@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Porte_Monnaie extends CI_Controller
+class Porte_monnaie extends CI_Controller
 {
     public function __construct()
     {
