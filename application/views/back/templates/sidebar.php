@@ -36,6 +36,7 @@
                             <li>
                                 <a><i class="fas fa-money-bill-wave"></i> Code <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
+                                    <li><a href="<?= site_url('back/code/validation')?>">Validation</a></li>
                                     <li><a href="<?= site_url('back/code/insertion')?>">Insertion</a></li>
                                     <li><a href="<?= site_url('back/code/liste')?>">Liste</a></li>
                                 </ul>

@@ -16,8 +16,9 @@ class Porte_monnaie_model extends CI_Model
         $query = $this->db->get();
         $result = $query->result_array();
         foreach ($result as &$row) {
+            $row['en_attente'] = $this->code_en_attente($row['code'], $this->session->userdata('user_id'));
+            $row['confirme'] = $this->code_confirme($row['code'], $this->session->userdata('user_id'));
             $row['utilisable'] = $this->est_utilisable_code($row['code']);
-            $row['utilise'] = $this->code_deja_utilise($row['code'], $this->session->userdata('user_id'));
         }
         return $result;
     }
@@ -40,8 +41,50 @@ class Porte_monnaie_model extends CI_Model
         }
         $this->db->where('id_utilisateur', $id_utilisateur);
         $this->db->where('id_code', $code_id);
+        $this->db->where('etat !=', -10);
         $query = $this->db->get('insertion_code');
         if($query->num_rows() > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function code_en_attente($code, $id_utilisateur)
+    {
+        $code_id = $this->code_existe($code);
+        if($code_id === -1) {
+            return FALSE;
+        }
+        $this->db->where('id_utilisateur', $id_utilisateur);
+        $this->db->where('id_code', $code_id);
+        $this->db->order_by('date_implementation', 'DESC');
+        $query = $this->db->get('insertion_code');
+        if($query->num_rows() === 0) {
+            return FALSE;
+        }
+        $row = $query->row();
+
+        if($row->etat == 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function code_confirme($code, $id_utilisateur)
+    {
+        $code_id = $this->code_existe($code);
+        if($code_id === -1) {
+            return FALSE;
+        }
+        $this->db->where('id_utilisateur', $id_utilisateur);
+        $this->db->where('id_code', $code_id);
+        $this->db->order_by('date_implementation', 'DESC');
+        $query = $this->db->get('insertion_code');
+        if($query->num_rows() === 0) {
+            return FALSE;
+        }
+        $row = $query->row();
+        if($row->etat == 10) {
             return TRUE;
         }
         return FALSE;

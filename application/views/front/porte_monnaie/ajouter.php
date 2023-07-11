@@ -54,15 +54,17 @@
                                     <tr>
                                         <td>
                                             <span id="code<?= $i ?>"><?= $codes[$i]['code'] ?></span>
-                                            <a class="mdi mdi-content-copy" onclick="copy('code1')" href="#"></a>
+                                            <a class="mdi mdi-content-copy" onclick="copy('code<?= $i ?>')" href="#"></a>
                                         </td>
-                                        <td><?= number_format($codes[$i]['montant'], 0, ',', ' ') ?></td>
-                                        <?php if($codes[$i]['utilise']): ?>
+                                        <td class="text-right"><?= number_format($codes[$i]['montant'], 0, ',', ' ') ?></td>
+                                        <?php if($codes[$i]['confirme']): ?>
+                                            <td><label class="badge badge-secondary">Utilisé</label></td>
+                                        <?php elseif($codes[$i]['en_attente']): ?>
                                             <td><label class="badge badge-warning">En attente</label></td>
                                         <?php elseif($codes[$i]['utilisable']): ?>
                                             <td><label class="badge badge-success">Disponible</label></td>
                                         <?php else: ?>
-                                            <td><label class="badge badge-danger">Utilisé</label></td>
+                                            <td><label class="badge badge-danger">Expiré</label></td>
                                         <?php endif ?>
                                     </tr>
                                     <?php endfor ?>
