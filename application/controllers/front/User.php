@@ -13,5 +13,17 @@
             redirect("front/regime/inserer_details");
         }
 
+        public function pass_to_gold(){
+            $this->load->view('front/templates/header');
+            $this->load->view('front/templates/navbar');
+            $this->load->view('front/templates/sidebar');
+            $this->load->view('front/templates/blank');
+            $this->load->view('front/user/gold');
+            $this->load->view('front/templates/footer');
+        }
+        public function process_gold(){
+            $this->Details_patient_model->process_to_gold();
+            redirect("front/user/pass_to_gold");
+        }
     }
 ?>

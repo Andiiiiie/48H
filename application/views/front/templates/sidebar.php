@@ -3,20 +3,24 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+    <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url('index.php/front/user/pass_to_gold') ?>">
+                <i class="menu-icon fas fa-utensils"></i>
+                <span class="menu-title">Gold</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/front/regime/mon_regime') ?>">
                 <i class="menu-icon fas fa-utensils"></i>
                 <span class="menu-title">Mon regime</span>
             </a>
         </li>
-        <?php if(!isset($_SESSION['objectif'])) { ?>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('index.php/front/regime/inserer_details') ?>">
-                <i class="menu-icon fas fa-info-circle"></i>
-                <span class="menu-title">Compléter mon profil</span>
-            </a>
-        </li>
-        <?php } ?>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('index.php/front/regime/inserer_details') ?>">
+                    <i class="menu-icon fas fa-info-circle"></i>
+                    <span class="menu-title">Compléter mon profil</span>
+                </a>
+            </li>
         <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('index.php/front/regime/proposition_regime') ?>">
                 <i class="menu-icon fas fa-star"></i>

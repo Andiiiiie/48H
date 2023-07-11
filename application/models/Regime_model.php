@@ -40,6 +40,13 @@ class Regime_model extends CI_Model
         ";
         $query = $this->db->query($sql);
         $result = $query->row_array();
+        if(count($result) == 0){
+            $result = array(
+                'id_utilisateur' => $id_utilisateur,
+                'remise' => 0,
+                'prix' => 1
+            );
+        }
         return $result;
     }
     // insertion du nouveau regime
